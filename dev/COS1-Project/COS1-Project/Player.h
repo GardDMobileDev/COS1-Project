@@ -13,7 +13,7 @@ class Player
 	int food; 
 	int water;
 	int supplies;
-	int morales;
+	int morale;
 
 
 	
