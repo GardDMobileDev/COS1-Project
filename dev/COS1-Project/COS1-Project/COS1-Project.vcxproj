@@ -200,7 +200,15 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Location.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Traveler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Location.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Traveler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
