@@ -22,7 +22,7 @@ After completing the above steps, feel free to begin updating this readme where 
 
 # Project & Portfolio 1
 
-### Student First & Last Name
+### Desire' & White
 
 Hello my name is Desire' White. I am a student from New Jersey(raised). The purpose of this repository is to practice development using version control. This work will help me begin to build a portfolio of skills and accomplishment that can be shared in the future.
 
