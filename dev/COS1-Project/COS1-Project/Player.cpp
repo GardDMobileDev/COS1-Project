@@ -2,7 +2,15 @@
 #include <iostream>
 
 
-//Player Constructor : stats for new game
+/*
+Player Constructor : stats for new game
+ - This class defines whats actually happening in Player.h
+ - Player:: - belongs to Player.h class 
+ - data in constructor give the beginning state of the object
+ - Getters get the data from object
+
+
+*/
 Player::Player()
 {
 	name = "Traveler";
@@ -30,49 +38,33 @@ void Player::SetName(const std::string& playerName)
 
 }
 
-std::string Player::GetName() const 
-{
+std::string Player::GetName() const { return name; }
 
+int Player::GetHealth()const { return health; }
+
+int Player::GetFood() const { return food;}
+
+int Player::GetWater() const { return water; }
+
+int Player::GetSupplies() const { return supplies; }
+
+int Player::GetMorale() const { return morale; }
+
+//Display players stats
+void Player::DisplayStats() const 
+{
+	std::cout << "\n";
+	std::cout << "=====================================================================";
+	std::cout << "PLAYER STATS\n";
+	std::cout << "=====================================================================";
+
+	std::cout << "Traveler: " << name <<std::endl;
+	std::cout << "Health: " << health << std::endl;
+	std::cout << "Food: " << food << std::endl;
+	std::cout << "Water: " << water << std::endl;
+	std::cout << "Supplies: " << supplies << std::endl;
+	std::cout << "Morale: " << morale << std::endl;
+
+	std::cout << "=====================================================================";
 
 }
-
-
-int Player::GetHealth()const 
-{
-
-
-}
-
-
-int Player::GetFood() const 
-{
-
-}
-
-
-int Player::GetWater() const
-{
-
-
-
-}
-
-
-int Player::GetSupplies() const 
-{
-
-
-
-}
-
-
-
-int Player::GetMorale() const 
-{
-
-
-
-
-}
-
-
