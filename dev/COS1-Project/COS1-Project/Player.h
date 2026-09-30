@@ -28,7 +28,7 @@ class Player
 	  - const read but dont change object 
    */
 		std::string GetName() const;
-		int GetHealth();
+		int GetHealth()const;
 		int GetFood() const;
 		int GetWater() const;
 		int GetSupplies() const;
@@ -38,7 +38,7 @@ class Player
 	   Setters: update players name
 	   &: wont modify string, allow access and not copy
 	 */
-		void SetName(std::string& playerName);
+	void SetName(const std::string& playerName);
 
 	//Display players stats
 	void DisplayStats() const;
