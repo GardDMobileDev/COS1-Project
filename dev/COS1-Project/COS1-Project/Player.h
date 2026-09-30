@@ -32,7 +32,6 @@ class Player
 		int GetFood() const;
 		int GetWater() const;
 		int GetSupplies() const;
-		int GetSupplies() const;
 		int GetMorale() const;
 
 	 /*
