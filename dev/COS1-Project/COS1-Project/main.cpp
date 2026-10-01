@@ -11,11 +11,22 @@ FUNCTION DECLARATIONS
   - Functions to start The Bible Trail 
 
         - GetMenuChoice : menu choice from player
-        - DisplayMenu : displays menu
+        - DisplayMainMenu : displays menu
         - DisplayInstructions : displays game instructions
         - StartJourney : Starts/controls journey of Player 
 */
 
+//GetMenuChoice 
+int GetMenuChoice(int min, int max);
+
+//Display Main Menu 
+void DisplayMainMenu();
+
+//Display Instructions 
+void DisplayInstructions();
+
+//Start Journey 
+void StartJourney(Player& player, Traveler& travelers, std::vector<Location> locations);
 
 
 int main()
