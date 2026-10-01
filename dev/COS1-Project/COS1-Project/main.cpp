@@ -1,4 +1,22 @@
 #include <iostream>
+#include <vector>
+#include <string>
+#include <limits>
+#include "Player.h"
+#include "Traveler.h"
+#include "Location.h"
+
+/*
+FUNCTION DECLARATIONS 
+  - Functions to start The Bible Trail 
+
+        - GetMenuChoice : menu choice from player
+        - DisplayMenu : displays menu
+        - DisplayInstructions : displays game instructions
+        - StartJourney : Starts/controls journey of Player 
+*/
+
+
 
 int main()
 {
