@@ -29,8 +29,26 @@ void DisplayInstructions();
 void StartJourney(Player& player, Traveler& travelers, std::vector<Location> locations);
 
 
+/*
+  The main:
+    - This will be the control flow. This creates Player/Travler objects.
+    - This will store location in Genesis into a vector
+    - This will use input validation check for user entry
+    - The app should Display a menu for the player to start, view instructions
+    of the game or exit.
+
+   Program Runs:
+       - Asks for name
+       - Provides Options to
+           - View Status
+           - View Travelers
+           - View Locations
+           - Continue on Journey
+ */
 int main()
 {
+ 
+
   
 }
 
