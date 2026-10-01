@@ -47,6 +47,17 @@ void StartJourney(Player& player, Traveler& travelers, std::vector<Location> loc
  */
 int main()
 {
+
+    //Create a Player 
+    Player player;
+
+    //Create a Traveler : starts the group
+    Traveler travelers;
+
+    //Create Locations : vector will store multiple objects
+
+
+
  
 
   
