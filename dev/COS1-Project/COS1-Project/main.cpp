@@ -81,6 +81,33 @@ int main()
     locations.push_back(Location("Abraham's Journey", "Abraham leaves home, packs up his family and God leads him to the Promise Land."));
     locations.push_back(Location("Egypt", "The Journey reach Egypt. This is a significant location."));
  
+
+    //Loop so long as user makes a selection
+    bool start = true;
+
+    //This will keep displaying the main menu until Exit is selected
+    while (start)
+    {
+        //Display Menu
+        DisplayMainMenu();
+
+        //Get the menu selection
+        int choice = GetMenuChoice(1, 3);
+
+        switch (choice)
+        {
+
+        case 1: 
+              //Start Journey 
+
+
+
+        default:
+            break;
+        }
+
+    }
+
     
 }
 
