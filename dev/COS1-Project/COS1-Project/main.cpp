@@ -148,8 +148,7 @@ void DisplayInstructions()
     DisplayHeader("INSTRUCTIONS");
 
     //The Purpose of the Game: explain to user 
-    std::cout << "Genesis Journey is an interactive\n";
-    std::cout << "console app based on locations\n";
+    std::cout << "Genesis Journey is an interactive console app based on locations\n";
     std::cout << "and events from the Book of Genesis\n";
 
     //Players goal  
@@ -157,9 +156,8 @@ void DisplayInstructions()
     std::cout << "while managing your traveler group.\n";
 
     // Game Features
-    std::cout << "You will be able to travel through\n";
-    std::cout << "- Genesis locations\n";
-    std::cout << "- Manage Resources like: foo, water and supplies\n";
+    std::cout << "You will be able to travel through Genesis locations\n";
+    std::cout << "- Manage Resources like: food, water and supplies\n";
     std::cout << "- Make decisions\n";
     std::cout << "- Encounter events\n";
     std::cout << "- Save and load your journey\n";
@@ -271,7 +269,7 @@ void StartJourney(Player& player, Traveler& travelers, const std::vector<Locatio
 
         case 3: 
             //Display Locations
-            DisplayHeader("YOUR JOURNEY");
+            DisplayHeader("LOCATIONS");
 
             //Loop through vector 
             for (int i = 0; i < locations.size(); i++)
