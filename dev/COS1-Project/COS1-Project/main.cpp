@@ -32,7 +32,7 @@ void StartJourney(Player& player, Traveler& travelers, std::vector<Location> loc
 /*
   The main:
     - This will be the control flow. This creates Player/Travler objects.
-    - This will store location in Genesis into a vector
+    - This will store location in Genesis into a vector (REQUIREMENT)
     - This will use input validation check for user entry
     - The app should Display a menu for the player to start, view instructions
     of the game or exit.
@@ -55,12 +55,33 @@ int main()
     Traveler travelers;
 
     //Create Locations : vector will store multiple objects
+    std::vector<Location> locations;
 
+    /*
+       Books of Genesis Locations (Important Locations)
+       
+       1. Garden of Eden: God placed Adam and Eve to tend before banishing them for sin 
 
+       2. Noahs Ark: God commands Noah to build, spare his family/animals before the flood 
 
+       3. Tower of Babel: A tower built by people to be boastful, not for God, 
+       because they spoke the same lanaguage they could continue to build so he 
+       made them all speak different languages to cause confusion
+
+       4. Abrahams Journey: The man who was the example of true fath, God made a promise
+       to give him the Promise Land, bless his decendents, and all of his family line
+       for his obedience
+
+       5. Egypt: A journey in Egpty ( to be continued ) 
+    
+    */
+    locations.push_back(Location("Garden of Eden", "The Garden Adam was suppose to tend to with Eve."));
+    locations.push_back(Location("Noah's Ark", "The world is full of sin. Noah has been tasked to build an ark."));
+    locations.push_back(Location("Tower of Babel", "People are gathered to build a great city and tower."));
+    locations.push_back(Location("Abraham's Journey", "Abraham leaves home, packs up his family and God leads him to the Promise Land."));
+    locations.push_back(Location("Egypt", "The Journey reach Egypt. This is a significant location."));
  
-
-  
+    
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
