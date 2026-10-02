@@ -46,9 +46,9 @@ void Traveler::DisplayTravelers() const
 		//Loop through the vectors and display traveler 
 		int num = 1; 
 
-		for (const std::string& travler : travelers)
+		for (const std::string& traveler : travelers)
 		{
-			std::cout << num << ". " << travler << std::endl;
+			std::cout << num << ". " << traveler << std::endl;
 
 			num++;
 		}

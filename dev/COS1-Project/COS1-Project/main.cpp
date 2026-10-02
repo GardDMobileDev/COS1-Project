@@ -99,17 +99,256 @@ int main()
 
         case 1: 
               //Start Journey 
+            StartJourney(player, travelers, locations);
+            break;
+
+        case 2: 
+              //Display Instructions
+            DisplayInstructions();
+            break;
+
+        case 3: 
+             //Exit 
+            start = false;
+            std::cout << "Thank your playing the Bible Trail! Goodbye!" << std::endl;
+            break;
+
+        default:
+            std::cout << "Oops. Something went wrong. Try again." << std::endl;
+            break;
+        }
+
+    }
+    //End program 
+    return 0;
+    
+}
 
 
+//Display Main Menu 
+void DisplayMainMenu()
+{
+    std::cout << "\n";
+    std::cout << "========================================\n";
+    std::cout << "      GENESIS JOURNEY\n";
+    std::cout << "========================================\n";
+    std::cout << "An Interactive Journey Through Genesis\n";
+    std::cout << "========================================\n";
+    std::cout << "\n";
+
+    std::cout << "1. Start A New Journey\n";
+    std::cout << "2. Instructions\n";
+    std::cout << "3. Exit\n";
+    std::cout << "\n";
+
+}
+
+
+//Display Instructions 
+void DisplayInstructions() 
+{
+    std::cout << "\n";
+    std::cout << "=====================================================================";
+    std::cout << "        INSTRUCTIONS";
+    std::cout << "=====================================================================";
+   
+    //The Purpose of the Game: explain to user 
+    std::cout << "Genesis Journey is an interactive\n";
+    std::cout << "console app based on locations\n";
+    std::cout << "and events from the Book of Genesis\n";
+
+    //Players goal  
+    std::cout << "Your goal is to travel through Genesis\n";
+    std::cout << "while managing your traveler group.\n";
+
+    // Game Features
+    std::cout << "You will be able to travel through\n";
+    std::cout << "- Genesis locations\n";
+    std::cout << "- Manage Resources like: foo, water and supplies\n";
+    std::cout << "- Make decisions\n";
+    std::cout << "- Encounter events\n";
+    std::cout << "- Save and load your journey\n";
+
+    std::cout << "=====================================================================";
+
+    //Clear input buffer
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    //Wait for player to press Enter 
+    std::cin.get();
+
+}
+
+//Input Validation(REQUIREMENT)
+int GetMenuChoice(int min, int max) 
+{
+    int choice;
+
+    //Keep running until user selects a valid option
+    while (true)
+    {
+        std::cout << "Make a Selection:";
+
+        //Get input
+        if (std::cin >> choice)
+        {
+            //Is number in range
+            if (choice >= min && choice <= max)
+            {
+                return choice;
+            }
+
+        }
+
+        //Error 
+        std::cout << "Invalid. Please select an option from the menu." << std::endl;
+
+        //Clear 
+        std::cin.clear();
+
+        //Remove invalid input 
+       std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        
+    }
+
+}
+
+//Start Journey 
+void StartJourney(Player& player, Traveler& travelers, std::vector<Location> locations) 
+{
+    //Clear
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::string playerName;
+
+
+    std::cout << "\n";
+    std::cout << "=====================================================================";
+    std::cout << "        BEGIN YOUR JOURNEY\n";
+    std::cout << "=====================================================================";
+
+    //Prompt user 
+    std::cout << "Enter the name of your traveler: ";
+    std::getline(std::cin, playerName);
+
+    //Check 
+    while (playerName.empty())
+    {
+        std::cout << "Please enter a name for your traveler.\n";
+        std::cout << "Enter the name of your traveler: ";
+        std::getline(std::cin, playerName);
+
+    }
+
+    //Stores name inside player
+    player.SetName(playerName);
+
+    //Journey menu 
+    bool journey = true;
+
+    //Continue to display journey menu until user chooses return
+    while (journey)
+    {
+        std::cout << "\n";
+        std::cout << "=====================================================================\n";
+        std::cout << "        YOUR JOURNEY\n";    
+        std::cout << "=====================================================================\n";
+
+         //Display name of player 
+        std::cout << "Traveler: " << player.GetName() << std::endl;
+        std::cout << "\n";
+        
+        //Display Options
+        std::cout << "1. View Status\n";
+        std::cout << "1. View Travelers\n";
+        std::cout << "1. View Genesis Locations\n";
+        std::cout << "1. Continue Journey\n";
+        std::cout << "1. Return to Main Menu\n";
+
+        //User selection
+        int choice = GetMenuChoice(1,5);
+
+        switch (choice)
+        {
+
+        case 1: 
+             // Display Player Stats 
+            player.DisplayStats();
+            break;
+
+        case 2:
+            //Display Travelers 
+            travelers.DisplayTravelers();
+            break;
+
+        case 3: 
+            //Display Locations
+            std::cout << "\n";
+            std::cout << "=====================================================================\n";
+            std::cout << "        YOUR JOURNEY\n";
+            std::cout << "=====================================================================\n";
+
+            //Loop through vector 
+            for (int i = 0; i < locations.size(); i++)
+            {
+                std::cout << i + 1 << ". " << locations[i].GetName() << std::endl;
+            }
+
+            std::cout << "\n";
+            std::cout << "Enter a location to view it, \n";
+            std::cout << "or 0 to return.\n";
+
+            {
+                int locationChoice;
+
+                //Validate selection
+                while (true)
+                {
+                    std::cout << "Selection: ";
+
+                    if (std::cin >> locationChoice)
+                    {
+                        if (locationChoice == 0)
+                        {
+                            break;
+                        }
+
+                        //Check selection
+                        if (locationChoice >= 1 && locationChoice <= static_cast<int>(locations.size()))
+                        {
+                            //Display selected 
+                            locations[locationChoice - 1].DisplayLocation();
+                            break;
+                        }
+                    }
+
+                    //Error 
+                    std::cout << "Invalid. Try Again.\n";
+
+                    //Clear
+                    std::cin.clear();
+
+                    //Remove neg input
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                }
+            }
+            break;
+
+            //Added in other cases later. Starting here and then Ill decide where to go next
 
         default:
             break;
         }
 
+
+
+
     }
 
-    
 }
+
+
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
