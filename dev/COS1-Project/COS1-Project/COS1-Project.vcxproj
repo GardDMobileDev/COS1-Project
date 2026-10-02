@@ -200,12 +200,14 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameUI.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Traveler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameUI.h" />
     <ClInclude Include="Location.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Traveler.h" />

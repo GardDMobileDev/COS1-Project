@@ -1,5 +1,6 @@
 #include "Player.h"
 #include <iostream>
+#include "GameUI.h"
 
 
 /*
@@ -53,11 +54,8 @@ int Player::GetMorale() const { return morale; }
 //Display players stats
 void Player::DisplayStats() const 
 {
-	std::cout << "\n";
-	std::cout << "=====================================================================";
-	std::cout << "PLAYER STATS\n";
-	std::cout << "=====================================================================";
-
+	DisplayHeader("PLAYER STATS");
+	
 	std::cout << "Traveler: " << name <<std::endl;
 	std::cout << "Health: " << health << std::endl;
 	std::cout << "Food: " << food << std::endl;

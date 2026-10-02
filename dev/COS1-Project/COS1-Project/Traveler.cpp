@@ -1,5 +1,7 @@
 #include "Traveler.h"
 #include <iostream>
+#include "GameUI.h"
+
 
 /*
  This will show what to do with the information from Traveler.h
@@ -31,10 +33,7 @@ void Traveler::AddTraveler(const std::string& travelerName)
 //Displays All Travelers
 void Traveler::DisplayTravelers() const 
 {
-	std::cout << "\n";
-	std::cout << "=====================================================================";
-	std::cout << "                     YOUR TRAVELERS\n";
-	std::cout << "=====================================================================";
+	DisplayHeader("YOUR TRAVELERS");
 
 	//Check if there are any travelers
 	if (travelers.empty())

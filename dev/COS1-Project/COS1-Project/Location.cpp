@@ -1,5 +1,7 @@
 #include "Location.h"
 #include<iostream>
+#include "GameUI.h"
+
 
 /*
  Default constructor
@@ -7,7 +9,7 @@
 */
 Location::Location()
 {
-	name = "Uknown";
+	name = "Unknown";
 	description = "You have not reached a known location.";
 
 }

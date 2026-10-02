@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Traveler.h"
 #include "Location.h"
+#include "GameUI.h"
 
 /*
 FUNCTION DECLARATIONS 
@@ -26,7 +27,7 @@ void DisplayMainMenu();
 void DisplayInstructions();
 
 //Start Journey 
-void StartJourney(Player& player, Traveler& travelers, std::vector<Location> locations);
+void StartJourney(Player& player, Traveler& travelers, const std::vector<Location> locations);
 
 
 /*
@@ -128,10 +129,7 @@ int main()
 //Display Main Menu 
 void DisplayMainMenu()
 {
-    std::cout << "\n";
-    std::cout << "========================================\n";
-    std::cout << "      GENESIS JOURNEY\n";
-    std::cout << "========================================\n";
+    DisplayHeader("GENESIS JOURNEY");
     std::cout << "An Interactive Journey Through Genesis\n";
     std::cout << "========================================\n";
     std::cout << "\n";
@@ -147,11 +145,8 @@ void DisplayMainMenu()
 //Display Instructions 
 void DisplayInstructions() 
 {
-    std::cout << "\n";
-    std::cout << "=====================================================================";
-    std::cout << "        INSTRUCTIONS";
-    std::cout << "=====================================================================";
-   
+    DisplayHeader("INSTRUCTIONS");
+
     //The Purpose of the Game: explain to user 
     std::cout << "Genesis Journey is an interactive\n";
     std::cout << "console app based on locations\n";
@@ -214,17 +209,14 @@ int GetMenuChoice(int min, int max)
 }
 
 //Start Journey 
-void StartJourney(Player& player, Traveler& travelers, std::vector<Location> locations) 
+void StartJourney(Player& player, Traveler& travelers, const std::vector<Location> locations) 
 {
     //Clear
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::string playerName;
 
 
-    std::cout << "\n";
-    std::cout << "=====================================================================";
-    std::cout << "        BEGIN YOUR JOURNEY\n";
-    std::cout << "=====================================================================";
+    DisplayHeader("BEGIN YOUR JOURNEY");
 
     //Prompt user 
     std::cout << "Enter the name of your traveler: ";
@@ -248,10 +240,7 @@ void StartJourney(Player& player, Traveler& travelers, std::vector<Location> loc
     //Continue to display journey menu until user chooses return
     while (journey)
     {
-        std::cout << "\n";
-        std::cout << "=====================================================================\n";
-        std::cout << "        YOUR JOURNEY\n";    
-        std::cout << "=====================================================================\n";
+        DisplayHeader("YOUR JOURNEY");
 
          //Display name of player 
         std::cout << "Traveler: " << player.GetName() << std::endl;
@@ -259,13 +248,13 @@ void StartJourney(Player& player, Traveler& travelers, std::vector<Location> loc
         
         //Display Options
         std::cout << "1. View Status\n";
-        std::cout << "1. View Travelers\n";
-        std::cout << "1. View Genesis Locations\n";
-        std::cout << "1. Continue Journey\n";
-        std::cout << "1. Return to Main Menu\n";
+        std::cout << "2. View Travelers\n";
+        std::cout << "3. View Genesis Locations\n";
+        std::cout << "4. Continue Journey\n";
+        std::cout << "5. Return to Main Menu\n";
 
         //User selection
-        int choice = GetMenuChoice(1,5);
+        int choice = GetMenuChoice(1,3);
 
         switch (choice)
         {
@@ -282,10 +271,7 @@ void StartJourney(Player& player, Traveler& travelers, std::vector<Location> loc
 
         case 3: 
             //Display Locations
-            std::cout << "\n";
-            std::cout << "=====================================================================\n";
-            std::cout << "        YOUR JOURNEY\n";
-            std::cout << "=====================================================================\n";
+            DisplayHeader("YOUR JOURNEY");
 
             //Loop through vector 
             for (int i = 0; i < locations.size(); i++)
@@ -333,21 +319,24 @@ void StartJourney(Player& player, Traveler& travelers, std::vector<Location> loc
                 }
             }
             break;
+           
+        case 4: 
+            std::cout << "Continue your journey.. (temp placement)";
+            //Will continue next week
+            break;
 
-            //Added in other cases later. Starting here and then Ill decide where to go next
+        case 5: 
+            journey = false;
+            break;
 
         default:
+            std::cout << "Something went wrong. Try again.";
+
             break;
         }
-
-
-
-
     }
 
 }
-
-
 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
