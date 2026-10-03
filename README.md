@@ -44,7 +44,13 @@ Each week I will summarize my milestone activity and progress by writing a stand
 
 ### Week 1
 
-Replace this paragraph with your stand up for this week. Use the prompts above to summarize your most recent milestone activity and work.
+This week, I worked on building the foundation for my Genesis Trail Console Application. I created the C++ project structure and started developing the Player, Traveler and location classes. I also worked on organizing the project into .h/.cpp files and creating main and journey menus. My goal is to create the main structure of the app that makes building onto a simple process. 
+
+I didn't face any major challenges. If I had to define a challenge I encountered, I would say organizing classes and making decisions on what responsibilities/control they would contain. At this time each class will have a specific purpose making declarations in my .h and defining them in my .cpp files. A small error I did face was in my loops. Spelling/typos I am known for and this caused my .exe to crash.  
+
+Now that I have a better understanding of how to use references, which I have been avoiding, this helped me organize my classes more efficiently. 
+
+My goal in the coming week is to build on the foundation by creating a playable game. I plan to add a Game class, travel system, counter for days, food, water, health, supplies and morale. As I go along I may change some things but this is my plan to date. 
 
 ### Week 2
 
