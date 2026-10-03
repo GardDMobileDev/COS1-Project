@@ -32,7 +32,7 @@ void StartJourney(Player& player, Traveler& travelers, const std::vector<Locatio
 
 /*
   The main:
-    - This will be the control flow. This creates Player/Travler objects.
+    - This will be the control flow. This creates Player/Traveler objects.
     - This will store location in Genesis into a vector (REQUIREMENT)
     - This will use input validation check for user entry
     - The app should Display a menu for the player to start, view instructions
@@ -151,9 +151,13 @@ void DisplayInstructions()
     std::cout << "Genesis Journey is an interactive console app based on locations\n";
     std::cout << "and events from the Book of Genesis\n";
 
+    DisplayDivider();
+
     //Players goal  
-    std::cout << "Your goal is to travel through Genesis\n";
-    std::cout << "while managing your traveler group.\n";
+    std::cout << "Your goal is to travel through Genesis while managing\n";
+    std::cout << "traveler group.\n";
+
+    DisplayDivider();
 
     // Game Features
     std::cout << "You will be able to travel through Genesis locations\n";
@@ -162,7 +166,7 @@ void DisplayInstructions()
     std::cout << "- Encounter events\n";
     std::cout << "- Save and load your journey\n";
 
-    std::cout << "=====================================================================";
+    DisplayDivider();
 
     //Clear input buffer
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
