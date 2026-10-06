@@ -93,7 +93,7 @@ int main()
         DisplayMainMenu();
 
         //Get the menu selection
-        int choice = GetMenuChoice(1, 3);
+        int choice = GetMenuChoice(1, 5);
 
         switch (choice)
         {
