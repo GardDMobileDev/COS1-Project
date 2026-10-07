@@ -24,7 +24,20 @@ class Game
 	  //This will determine if the game should still run
 	  bool isRunning;
 
-	 
+  public:
+	
+	  //Constructor 
+	  Game();
 
+	  //Starts game loop 
+	  void StartGame();
 
+	  //Display Main Menu
+	  void DisplayMainMenu();
+
+	  //Start a new journey
+	  void StartJourney();
+
+	  //Exit Game
+	  void ExitGame();
 };
