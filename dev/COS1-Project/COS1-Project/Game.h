@@ -15,5 +15,16 @@ class Game
 	  //This will store information about the player 
 	  Player player;
 
+	  //Store travlers that are with the player
+	  Traveler traveler;
+
+	  //Stores the current Genesis 
+	  Location currentLocation;
+
+	  //This will determine if the game should still run
+	  bool isRunning;
+
+	 
+
 
 };
