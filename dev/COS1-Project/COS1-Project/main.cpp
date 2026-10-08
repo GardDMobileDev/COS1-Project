@@ -50,7 +50,7 @@ void StartJourney(Player& player, Traveler& travelers, const std::vector<Locatio
 int main()
 {
 
-    
+  
 }
 
 
