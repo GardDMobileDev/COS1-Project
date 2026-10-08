@@ -3,11 +3,12 @@
 #include "Traveler.h"
 #include "Location.h"
 
-/*
-  This class controls the overall Genesis Journey. This will work with 
-  Player, Traveler and Location classes. 
-*/
 
+//==================================================
+//   WEEK 2 UPDATES:
+// - Added the Game class to control console app 
+// - This will connect: Player, Traveler, Location
+//==================================================
 class Game 
 {
   private:
@@ -15,11 +16,11 @@ class Game
 	  //This will store information about the player 
 	  Player player;
 
-	  //Store travlers that are with the player
-	  Traveler traveler;
-
 	  //Stores the current Genesis 
 	  Location currentLocation;
+
+	  //Store travlers that are with the player
+	  Traveler traveler;
 
 	  //This will determine if the game should still run
 	  bool isRunning;
@@ -37,6 +38,9 @@ class Game
 
 	  //Start a new journey
 	  void StartJourney();
+
+	  //Display Instructions
+	  void DisplayInstructions();
 
 	  //Exit Game
 	  void ExitGame();
