@@ -6,32 +6,18 @@
 #include "Traveler.h"
 #include "Location.h"
 #include "GameUI.h"
+#include "Game.h"
 
 /*
-FUNCTION DECLARATIONS 
+FUNCTION DECLARATIONS Week 1
   - Functions to start The Bible Trail 
 
         - GetMenuChoice : menu choice from player
         - DisplayMainMenu : displays menu
         - DisplayInstructions : displays game instructions
         - StartJourney : Starts/controls journey of Player 
-*/
 
-//GetMenuChoice 
-int GetMenuChoice(int min, int max);
-
-//Display Main Menu 
-void DisplayMainMenu();
-
-//Display Instructions 
-void DisplayInstructions();
-
-//Start Journey 
-void StartJourney(Player& player, Traveler& travelers, const std::vector<Location> locations);
-
-
-/*
-* WEEK 2 CODE MOVED INTO GAME CONTROLLER/UPDATED AS NEEDED 
+* WEEK 2 CODE MOVED INTO GAME CONTROLLER/UPDATED AS NEEDED
   The main:
     - This will be the control flow. This creates Player/Traveler objects.
     - This will store location in Genesis into a vector (REQUIREMENT)
@@ -46,9 +32,18 @@ void StartJourney(Player& player, Traveler& travelers, const std::vector<Locatio
            - View Travelers
            - View Locations
            - Continue on Journey
- */
+        This will now only handle the start of Bible Trail
+*/
 int main()
 {
+    //Create Bible Trail and connect the objects
+    Game game;
+
+    //Start the Genesis Main Menu
+    game.StartGame();
+
+    //Return 0: Program ended as normal
+    return 0;
 
   
 }
