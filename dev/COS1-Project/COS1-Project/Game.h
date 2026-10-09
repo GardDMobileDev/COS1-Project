@@ -36,11 +36,11 @@ class Game
 	  //Display Main Menu
 	  void DisplayMainMenu();
 
-	  //Start a new journey
-	  void StartJourney();
-
 	  //Display Instructions
 	  void DisplayInstructions();
+
+	  //Start a new journey
+	  void StartJourney();
 
 	  //Exit Game
 	  void ExitGame();

@@ -8,23 +8,48 @@
    - Methods : addTraveler, Display and getTravelerSize 
 */
 
+//================================
+//  TRAVELER UPDATES 
+// Tracks current day 
+// Controls travel system 
+// Connext Player/Location class
+// Handle Managing Resources
+//================================
 class Traveler
 {
 private:
-	//Vector : store travelers 
-	std::vector<std::string> travelers;
+	//Traveler access to player information 
+	Player& player;
+
+	//Reference to curren location object
+	Location& currentLocation;
+
+	//Tracks number of days in the journey 
+	int currentDay;
+
+	//Is the journey active 
+	bool journeyActive;
 
 public: 
-	//Constructor creates staring traveling group
-	Traveler();
+	//Constructor : Gets Location/Player objects
+	Traveler(Player& player, Location& currentLocation);
 
-	//Method to add a traveler 
-	void AddTraveler(const std::string& travelerName);
+	//Start Journey Menu 
+	void StartJourney();
 
-	//Method to Diplay current travelers
-	void DisplayTravelers() const;
+	//Will move player to next location 
+	void TravelNext();
 
-	// Returns the number of travelers in the group
-	int GetTravelerSize() const;
+	//Displays Players current status 
+	void DisplayStats();
+
+	//Display Location
+	void DisplayLocation();
+
+	//Hanlds a selection at Genesis Location 
+	void MakeLocationSelection();
+
+	//End Current Journey 
+	void EndJourney();
 
 };

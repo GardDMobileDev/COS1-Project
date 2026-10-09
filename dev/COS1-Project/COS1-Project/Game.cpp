@@ -18,7 +18,7 @@
 //==============================
 //   STARTS IN RUNNING STATE 
 //==============================
-Game::Game() 
+Game::Game() : traveler(player, currentLocation)
 {
 	isRunning = true;
 }
@@ -229,7 +229,7 @@ int GetMenuChoice(int min, int max)
 //================================
 void Game::StartJourney() 
 {
-    DisplayHeader(" BEGIN YOUR JOURNEY");
+    DisplayHeader("BEGIN YOUR JOURNEY");
 
     std::cout << "Welcome, your journey through the book of Genesis begins.\n";
 
@@ -238,5 +238,19 @@ void Game::StartJourney()
     //Traveler Handler 
     
 
+}
+
+//==============================
+//         EXIT GAME 
+//==============================
+void Game::ExitGame() 
+{
+    DisplayHeader("EXIT");
+
+    std::cout << "Thank you for playing Genesis Trail!\n";
+    std::cout << "Have a blessed day!\n";
+
+    //Updates isRunning to FALSE : stops main game loop
+    isRunning = false;
 }
 
