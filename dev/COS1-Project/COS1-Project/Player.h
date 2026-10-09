@@ -40,6 +40,15 @@ class Player
 	 */
 	void SetName(const std::string& playerName);
 
+	//WEEK 2 UPDATES: will be + or -
+	void ChangeHealth(int consumption);
+	void ChangeFood(int consumption);
+	void ChangeWater(int consumption);
+	void ChangeSupplies(int consumption);
+	void ChangeMorale(int consumption);
+
+
+
 	//Display players stats
 	void DisplayStats() const;
 };

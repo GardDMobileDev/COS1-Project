@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "Player.h"
+#include "Location.h"
 
 /*
  This class will keeps track of all the travelers with the player.

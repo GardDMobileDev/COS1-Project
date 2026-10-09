@@ -66,3 +66,70 @@ void Player::DisplayStats() const
 	std::cout << "=====================================================================";
 
 }
+
+//Week 2 Updates: Declarations new methods
+void Player::ChangeHealth(int consumption)
+{
+
+	health += consumption;
+
+	//Cant go below 0 
+	if (health < 0)
+	{
+		health = 0;
+	}
+}
+
+void Player::ChangeFood(int consumption)
+{
+	food += consumption;
+
+	//Cant go below 0 
+	if (food < 0)
+	{
+		food = 0;
+	}
+
+}
+
+
+void Player::ChangeWater(int consumption)
+{
+	water += consumption;
+
+	//Cant go below 0 
+	if (water < 0)
+	{
+		water = 0;
+	}
+
+}
+
+void Player::ChangeSupplies(int consumption)
+{
+
+	supplies += consumption;
+
+	//Cant go below 0 
+	if (supplies < 0)
+	{
+		supplies = 0;
+	}
+}
+
+void Player::ChangeMorale(int consumption)
+{
+	morale += consumption;
+
+	//Morale will be between 0 and 100
+	if (morale < 0)
+	{
+		morale = 0;
+	}
+	else if (morale > 100)
+	{
+		morale = 100;
+	}
+
+}
+
