@@ -26,6 +26,9 @@ private:
 	//Reference to curren location object
 	Location& currentLocation;
 
+	//Stores the Genesis locations in travel order
+	std::vector<Location> locations;
+
 	//Tracks number of days in the journey 
 	int currentDay;
 

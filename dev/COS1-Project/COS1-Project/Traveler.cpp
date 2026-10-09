@@ -1,7 +1,10 @@
 #include "Traveler.h"
+#include "Player.h"
 #include <iostream>
 #include "GameUI.h"
 #include <string>
+#include <vector>
+#include <limits>
 
 
 /*
@@ -165,13 +168,146 @@ void Traveler::TravelNext()
 
 	}
 
-	std::cout << "\nYou travel for one day.\n";
-
 	//Advance the day 
 	++currentDay;
 
 	//Consume resources : food and water 
-	
+	std::cout << "\nYou travel for one day.\n";
+    
+	player.ChangeFood(-5);
+	player.ChangeWater(-5);
 
+	//Move to next location 
+	currentLocation = locations[currentIndex + 1];
+
+	std::cout << "You have arrive at " << currentLocation.GetName() << "\n";
+	std::cout << "Day: " << currentDay << "\n";
+	std::cout << currentLocation.GetDescription() << "\n";
+
+
+}
+
+
+//==================================================
+//    DISPLAY PLAYER STATS
+//==================================================
+void Traveler::DisplayStats() 
+{
+	std::cout << "\n";
+	DisplayDivider();
+	DisplayHeader("PLAYER STATS");
+	DisplayDivider();
+
+	player.DisplayStats();
+}
+
+//==================================================
+//    DISPLAY CURRENT LOCATION 
+//==================================================
+void Traveler::DisplayLocation() 
+{
+	std::cout << "\n";
+	DisplayDivider();
+	DisplayHeader(currentLocation.GetName());
+	DisplayDivider();
+
+	std::cout << currentLocation.GetDescription();
+
+}
+
+//==================================================
+//    MAKE A LOCATION SELECTION
+// Will add additional consequences in Week 3
+//==================================================
+void Traveler::MakeLocationSelection() 
+{
+	std::string input;
+	int selection = 0;
+
+	std::cout << "\n";
+	DisplayDivider();
+	DisplayHeader(currentLocation.GetName());
+	DisplayDivider();
+
+	std::cout << currentLocation.GetDescription() << "\n\n";
+	std::cout << "What would you like to do?\n";
+	std::cout << "1. Continue the journey\n";
+	std::cout << "2. Explore the location\n";
+	std::cout << "3. Encourage the group\n";
+	std::cout << "2. Enter your selection: \n";
+
+	std::getline(std::cin, input);
+
+	try
+	{
+		if (input.empty())
+		{
+			std::cout << "Input cannont be blank.\n";
+		}
+
+		//Convert input string to int
+		selection = std::stoi(input);
+
+		if (selection < 1 || selection > 3)
+		{
+			std::cout << "Please enter 1, 2, or 3.\n";
+			return;
+		}
+
+	}
+	catch (const std::invalid_argument&)
+	{
+		std::cout << "Input is invalid. Please enter a number.";
+		return;
+	}
+
+	//Players Choice 
+	if (selection == 1)
+	{
+		std::cout << "Your group will continue to travel\n";
+	}
+	else if (selection == 2)
+	{
+		//If they explore result is 5 supplies consumed
+		player.ChangeSupplies(-5);
+
+		std::cout << "Your group explores the surrounding area.\n";
+		std::cout << "You used 5r supplies.\n";
+	}
+	else if (selection == 3)
+	{
+		//Encourage group increases morale
+		player.ChangeMorale(5);
+
+		std::cout << "You encourages your travlers.\n";
+		std::cout << "Morale increased by 5!\n";
+	}
+
+}
+
+//==================================================
+//       END JOURNEY
+// Week 2 Updates: input and getline
+// This allows user to confirm if they are ending
+// the journey
+//==================================================
+void Traveler::EndJourney()
+{
+	std::string input;
+
+	std::cout << "Are you sure you want to end your journey?(YES/NO): ";
+
+	std::getline(std::cin, input);
+
+	if (input == "y" || input == "Y")
+	{
+		journeyActive = false;
+
+		std::cout << "You ended your journey.\n";
+	}
+	else
+	{
+		std::cout << "Your journey will continue.";
+	}
 
 }
