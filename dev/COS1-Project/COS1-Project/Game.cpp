@@ -55,7 +55,28 @@ void Game::StartJourney()
 {
     DisplayHeader("BEGIN YOUR JOURNEY");
 
+
+    //Readd user entry 
+    std::string playerName;
+
     std::cout << "\nWelcome, your journey through the book of Genesis begins.\n";
+    std::cout << "\nPlease enter your name Traveler: \n";
+
+    //Updates using getline
+    std::getline(std::cin, playerName);
+
+    //Prompt user not to leave blank
+    while (playerName.empty())
+    {
+        std::cout << "Oops! Can't leave blank. Please enter your name: ";
+        std::getline(std::cin, playerName);
+    }
+
+    //Save name in player object
+    player.SetName(playerName);
+
+    //Displays Message
+    std::cout << "\nWelcome, " << player.GetName() << "!\n\n";
 
     //Traveler Handler 
     traveler.StartJourney();

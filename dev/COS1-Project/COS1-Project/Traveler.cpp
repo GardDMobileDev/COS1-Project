@@ -194,9 +194,12 @@ void Traveler::DisplayStats()
 	std::cout << "\n";
 	DisplayDivider();
 	DisplayHeader("PLAYER STATS");
-	DisplayDivider();
 
+	//Get name from player object
+	std::cout << "Traveler Name: " << player.GetName() << "\n";
 	player.DisplayStats();
+
+	
 }
 
 //==================================================
@@ -207,8 +210,6 @@ void Traveler::DisplayLocation()
 	std::cout << "\n";
 	DisplayDivider();
 	DisplayHeader(currentLocation.GetName());
-	DisplayDivider();
-
 	std::cout << currentLocation.GetDescription();
 
 }
@@ -225,7 +226,6 @@ void Traveler::MakeLocationSelection()
 	std::cout << "\n";
 	DisplayDivider();
 	DisplayHeader(currentLocation.GetName());
-	DisplayDivider();
 
 	std::cout << currentLocation.GetDescription() << "\n\n";
 	std::cout << "What would you like to do?\n";

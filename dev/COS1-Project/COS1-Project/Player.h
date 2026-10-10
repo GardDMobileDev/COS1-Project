@@ -13,6 +13,7 @@ class Player
 {
 	//private member variables
 	std::string name;
+
 	int health;
 	int food; 
 	int water;
@@ -28,6 +29,7 @@ class Player
 	  - const read but dont change object 
    */
 		std::string GetName() const;
+
 		int GetHealth()const;
 		int GetFood() const;
 		int GetWater() const;

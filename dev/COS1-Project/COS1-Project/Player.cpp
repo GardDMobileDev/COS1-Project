@@ -14,7 +14,7 @@ Player Constructor : stats for new game
 */
 Player::Player()
 {
-	name = "Traveler";
+	name = "Traveler"; //DEFAULT
 	health = 100;
 	food = 100;
 	water = 100;
