@@ -18,7 +18,8 @@
 //==============================
 //   STARTS IN RUNNING STATE 
 //==============================
-Game::Game() : traveler(player, currentLocation)
+Game::Game() : player(), currentLocation(), 
+traveler(player, currentLocation), isRunning(true)
 {
 	isRunning = true;
 }
@@ -35,6 +36,32 @@ void Game::StartGame()
 	}
 
 }
+
+//================================
+//  START JOURNEY 
+// 
+// Updates for Week 2:
+// Traveler will control the 
+// actual travel portion of the game
+// 
+//Traveler will handle:
+// Day Counter 
+// Travel 
+// Resources 
+// Genesis Location 
+// Location Selections
+//================================
+void Game::StartJourney()
+{
+    DisplayHeader("BEGIN YOUR JOURNEY");
+
+    std::cout << "\nWelcome, your journey through the book of Genesis begins.\n";
+
+    //Traveler Handler 
+    traveler.StartJourney();
+
+}
+
 
 //================================
 //  DISPLAYS MAIN JOURNEY MENU
@@ -123,7 +150,7 @@ void Game::DisplayMainMenu()
 //  DISPLAYS INSTRUCTIONS
 // inludes try/catch, getline uptd
 //================================
-void DisplayInstructions()
+void Game::DisplayInstructions()
 {
     DisplayHeader("INSTRUCTIONS");
 
@@ -134,7 +161,7 @@ void DisplayInstructions()
     DisplayDivider();
 
     //Players goal  
-    std::cout << "Your goal is to travel through Genesis while managing\n";
+    std::cout << "Your goal is to travel through Genesis while managing a\n";
     std::cout << "traveler group.\n";
 
     DisplayDivider();
@@ -208,35 +235,6 @@ int GetMenuChoice(int min, int max)
         }
 
     }
-
-}
-
-
-
-//================================
-//  START JOURNEY 
-// 
-// Updates for Week 2:
-// Traveler will control the 
-// actual travel portion of the game
-// 
-//Traveler will handle:
-// Day Counter 
-// Travel 
-// Resources 
-// Genesis Location 
-// Location Selections
-//================================
-void Game::StartJourney() 
-{
-    DisplayHeader("BEGIN YOUR JOURNEY");
-
-    std::cout << "Welcome, your journey through the book of Genesis begins.\n";
-
-    std::cout << "\n";
-
-    //Traveler Handler 
-    
 
 }
 

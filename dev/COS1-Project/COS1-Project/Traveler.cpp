@@ -50,7 +50,6 @@ void Traveler::StartJourney()
 		std::string input;
 		int selection = 0;
 
-		std::cout << "\n";
 		DisplayDivider();
 		DisplayHeader("YOUR JOURNEY");
 		DisplayDivider();
@@ -61,12 +60,12 @@ void Traveler::StartJourney()
 		std::cout << "Day: " << currentDay << "\n";
 		std::cout << "Location: " << currentLocation.GetName() << "\n";
 
-		std::cout << "1. Travel to Next Location\n";
+		std::cout << "\n1. Travel to Next Location\n";
 		std::cout << "2. View Player Stats\n";
-		std::cout << "2. View Current Location\n";
-		std::cout << "2. Make A Location Selection\n";
-		std::cout << "2. End Journey \n";
-		std::cout << "2. \nEnter your selection";
+		std::cout << "3. View Current Location\n";
+		std::cout << "4. Make A Location Selection\n";
+		std::cout << "5. End Journey \n";
+		std::cout << "\nEnter your selection: ";
 
 		std::getline(std::cin, input);
 
@@ -172,7 +171,7 @@ void Traveler::TravelNext()
 	++currentDay;
 
 	//Consume resources : food and water 
-	std::cout << "\nYou travel for one day.\n";
+	std::cout << "\nYou traveled for one day.\n";
     
 	player.ChangeFood(-5);
 	player.ChangeWater(-5);
@@ -183,7 +182,6 @@ void Traveler::TravelNext()
 	std::cout << "You have arrive at " << currentLocation.GetName() << "\n";
 	std::cout << "Day: " << currentDay << "\n";
 	std::cout << currentLocation.GetDescription() << "\n";
-
 
 }
 
@@ -234,7 +232,7 @@ void Traveler::MakeLocationSelection()
 	std::cout << "1. Continue the journey\n";
 	std::cout << "2. Explore the location\n";
 	std::cout << "3. Encourage the group\n";
-	std::cout << "2. Enter your selection: \n";
+	std::cout << "4. Enter your selection: \n";
 
 	std::getline(std::cin, input);
 
@@ -271,15 +269,15 @@ void Traveler::MakeLocationSelection()
 		//If they explore result is 5 supplies consumed
 		player.ChangeSupplies(-5);
 
-		std::cout << "Your group explores the surrounding area.\n";
-		std::cout << "You used 5r supplies.\n";
+		std::cout << "Your group explored the surrounding area.\n";
+		std::cout << "You used 5 supplies.\n";
 	}
 	else if (selection == 3)
 	{
 		//Encourage group increases morale
 		player.ChangeMorale(5);
 
-		std::cout << "You encourages your travlers.\n";
+		std::cout << "You encouraged your travlers.\n";
 		std::cout << "Morale increased by 5!\n";
 	}
 

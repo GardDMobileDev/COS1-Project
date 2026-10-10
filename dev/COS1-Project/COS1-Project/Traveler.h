@@ -16,6 +16,7 @@
 // Controls travel system 
 // Connext Player/Location class
 // Handle Managing Resources
+// Declare travel, stats and location selection
 //================================
 class Traveler
 {
