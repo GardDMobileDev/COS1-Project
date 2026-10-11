@@ -96,7 +96,7 @@ void Game::DisplayMainMenu()
 	//Store the converted menu selection
 	int selection;
 
-	DisplayHeader("GENESIS JOURNEY");
+	DisplayHeader("BIBLE TRAIL: BOOK OF GENESIS");
 	std::cout << "               An Interactive Journey Through Genesis\n";
     std::cout << "=====================================================================\n";
     std::cout << "\n";
@@ -194,7 +194,8 @@ void Game::DisplayInstructions()
     std::cout << "Choose how to respond to challenges and situations along the way.\n";
     std::cout << "Experience events and challenges inspired by the Book of Genesis\n";
     std::cout << "Manage your travelers and make choices that affect the progress of your journey\n";
-    std::cout << "Save your progress and return to your adventure later\n";
+    //std::cout << "Save your progress and return to your adventure later\n"; Add Week 4
+
 
 
 
