@@ -44,7 +44,7 @@ Each week I will summarize my milestone activity and progress by writing a stand
 
 ### Week 1
 
-This week, I worked on building the foundation for my Genesis Trail Console Application. I created the C++ project structure and started developing the Player, Traveler and location classes. I also worked on organizing the project into .h/.cpp files and creating main and journey menus. My goal is to create the main structure of the app that makes building onto a simple process. 
+This week, I worked on building the foundation for my Bible Trail Console Application. I created the C++ project structure and started developing the Player, Traveler and location classes. I also worked on organizing the project into .h/.cpp files and creating main and journey menus. My goal is to create the main structure of the app that makes building onto a simple process. 
 
 I didn't face any major challenges. If I had to define a challenge I encountered, I would say organizing classes and making decisions on what responsibilities/control they would contain. At this time each class will have a specific purpose making declarations in my .h and defining them in my .cpp files. A small error I did face was in my loops. Spelling/typos I am known for and this caused my .exe to crash.  
 
@@ -54,7 +54,14 @@ My goal in the coming week is to build on the foundation by creating a playable 
 
 ### Week 2
 
-My next stand up will go here...
+This week, I worked on building the core gameplay for my Bible Trail. I worked on creating the Game.h and Game.cpp files, connecting my existing classes, and using getline() and try/catch to handle user input and validate menu choices
+
+One challenge was making sure my classes connected correctly and that the input validation worked without causing errors. Being sick and not getting enough sleep also made it harder to manage my time, so I plan to break my assignments into smaller tasks and give myself more time to complete them.
+
+I improved my understanding of how classes work together and how to organize code into separate header and implementation files. I also learned more about using getline(), stoi(), and try/catch to handle invalid user input.
+
+For Week 3 Upcoming Goals, I plan to further develop my existing menus and test. I currently have an Issue called Prototype. This is just for myself. I want to refer back to this issue to be sure I stay focused on things I want to improve upon. Two important things I will focus on will be creating an Inventory system for quantity of supplies and Event system, that will introduce encounters along the journey which will impact the inventory. 
+
 
 ### Week 3
 
