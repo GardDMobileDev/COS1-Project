@@ -97,9 +97,9 @@ void Game::DisplayMainMenu()
 	int selection;
 
 	DisplayHeader("GENESIS JOURNEY");
-	std::cout << "An Interactive Journey Through Genesis\n";
-	std::cout << "========================================\n";
-	std::cout << "\n";
+	std::cout << "               An Interactive Journey Through Genesis\n";
+    std::cout << "=====================================================================\n";
+    std::cout << "\n";
 
 	std::cout << "1. Start A New Journey\n";
 	std::cout << "2. Instructions\n";
@@ -176,24 +176,38 @@ void Game::DisplayInstructions()
     DisplayHeader("INSTRUCTIONS");
 
     //The Purpose of the Game: explain to user 
-    std::cout << "Genesis Journey is an interactive console app based on locations\n";
-    std::cout << "and events from the Book of Genesis\n";
+    std::cout << "Welcome to Bible Trail: Book of Genesis\n\n";
+    std::cout << "An interactive console adventure inspired by the people,\n";
+    std::cout << "places, and events recorded in the Book of Genesis\n";
+    std::cout << "Travel through the world of Genesis, explore biblical locations, experience\n";
+    std::cout << "important events, and guide your group safely through the journey. Your\n";
+    std::cout << "decisions will shape your adventure as you face challenges, manage resources,\n";
+    std::cout << "and encounter events inspired by Scripture\n";
+
 
     DisplayDivider();
 
-    //Players goal  
-    std::cout << "Your goal is to travel through Genesis while managing a\n";
-    std::cout << "traveler group.\n";
+    //What user can do 
+    std::cout << "What you can do:\n\n";
+    std::cout << "Travel to places connected to the events and people of Genesis\n";
+    std::cout << "Keep track of your group's food, water, and supplies to help everyone survive the journey\n";
+    std::cout << "Choose how to respond to challenges and situations along the way.\n";
+    std::cout << "Experience events and challenges inspired by the Book of Genesis\n";
+    std::cout << "Manage your travelers and make choices that affect the progress of your journey\n";
+    std::cout << "Save your progress and return to your adventure later\n";
+
+
 
     DisplayDivider();
 
     // Game Features
-    std::cout << "You will be able to travel through Genesis locations\n";
-    std::cout << "- Manage Resources like: food, water and supplies\n";
-    std::cout << "- Make decisions\n";
-    std::cout << "- Encounter events\n";
-    std::cout << "- Save and load your journey\n";
+    std::cout << "Every journey brings new decisions, challenges, and discoveries. Plan your\n";
+    std::cout << "travels carefully, manage your resources wisely, and guide your group through\n";
+    std::cout << "the world of Genesis.\n\n";
+    std::cout << "Are you ready to begin your Bible Trail? Your journey through Genesis awaits!\n\n";
 
+
+  
     DisplayDivider();
 
     //Getline Update 
