@@ -74,6 +74,8 @@ void Player::DisplayStats() const
 //  WEEK 3 UPDATES(start here)
 // updating rules for health limits
 // update when food/water run out
+// Health/Moral capped at 200
+// And no resource can fall below 0
 //==============================
 void Player::ChangeHealth(int consumption)
 {
