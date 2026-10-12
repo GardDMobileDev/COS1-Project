@@ -19,7 +19,7 @@ class Inventory
 {
 private:
 	//Store the names of items
-	std::vector<std::string> itemName;
+	std::vector<std::string> itemNames;
 
 	//Stores quantity of each item : index will match the itemNames vector
 	std::vector<int> itemQuantity;
