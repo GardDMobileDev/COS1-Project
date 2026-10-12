@@ -29,7 +29,7 @@ class Player
 	  - const read but dont change object 
    */
 		std::string GetName() const;
-
+		
 		int GetHealth()const;
 		int GetFood() const;
 		int GetWater() const;

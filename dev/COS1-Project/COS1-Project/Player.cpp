@@ -33,6 +33,7 @@ Set Players name
   use my setter method, users can create a name, that can be read and update name var.
   Each player will have its own copy of name. The name will be a reference of playerName.
 */
+
 void Player::SetName(const std::string& playerName) 
 {
 	name = playerName;
@@ -68,6 +69,12 @@ void Player::DisplayStats() const
 }
 
 //Week 2 Updates: Declarations new methods
+
+//==============================
+//  WEEK 3 UPDATES(start here)
+// updating rules for health limits
+// update when food/water run out
+//==============================
 void Player::ChangeHealth(int consumption)
 {
 
@@ -77,6 +84,10 @@ void Player::ChangeHealth(int consumption)
 	if (health < 0)
 	{
 		health = 0;
+	}
+	else if (health > 100)
+	{
+		health = 100;
 	}
 }
 
