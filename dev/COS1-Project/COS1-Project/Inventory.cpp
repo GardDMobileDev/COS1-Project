@@ -7,6 +7,12 @@
 // 
 // The purpose of this class: gives the player a small collection
 // of supplies in the beginning of the journey
+// 
+// ULTIMATE GOAL DISPLAY:
+// 
+// Sack of bread       x3 
+// Water container     x3
+// Aloe for healing    x1
 //====================================================================================
 Inventory::Inventory() 
 {
@@ -21,8 +27,7 @@ Inventory::Inventory()
 //  ADD ITEM
 // 
 // Will check if item already exists 
-// then increases quantity
-// Or add a new item to inventory
+//Adds a new item or increases existing qty
 //=============================================
 void Inventory::AddItem(const std::string& itemName, int quantity)
 {
@@ -94,5 +99,71 @@ bool Inventory::RemoveItem(const std::string& itemName, int quantity)
 }
 
 //============================================
-// CHECK AVAILABILITY
+// CHECK AVAILABILITY OF ITEM
+// 
+// Checlks whether an item is available
 //=============================================
+bool Inventory::HasItem(const std::string& itemName, int quantity) const
+{
+	if (quantity <= 0)
+	{
+		return false;
+	}
+
+	return GetItemQuantity(itemName) >= quantity;
+
+}
+
+//============================================
+// DISPLAY INVENTORY 
+// 
+// Shoes all items and quantities 
+//=============================================
+void Inventory::DisplayInventory() const
+{
+	DisplayHeader("PLAYER INVENTORY");
+
+	if (itemNames.empty())
+	{
+		std::cout << "Your inventory is empty.\n";
+	}
+	else
+	{
+		for (int i = 0; i < itemNames.size(); ++i)
+		{
+			std::cout << i + 1 << ". " << itemNames[i] << " x "
+				<< itemQuantity[i] << '\n';
+		}
+	}
+
+	DisplayDivider();
+}
+
+//============================================
+// GET ITEM QUANTITY 
+// 
+// returns the quanitity of a specific item
+//=============================================
+int Inventory::GetItemQuantity(const std::string& itemName) const
+{
+	for (int i = 0; i < itemNames.size(); ++i)
+	{
+		if (itemNames[i] == itemName)
+		{
+			return itemQuantity[i];
+		}
+	}
+
+	return 0;
+
+}
+
+//============================================
+// GET ITEM COUNT
+// 
+// returns number of item types 
+//=============================================
+int Inventory::GetItemCount() const
+{
+	return static_cast<int>(itemNames.size());
+}

@@ -33,17 +33,14 @@ FUNCTION DECLARATIONS Week 1
            - View Locations
            - Continue on Journey
         This will now only handle the start of Bible Trail
+
+* Week 3 Inventory & Events 
+    - Ultimate goal is to add more functionality to identify types of items and consumptions
+    - Create Events that change the state of the game and consumption of supplies
 */
 int main()
 {
-    //Create Bible Trail and connect the objects
-    Game game;
-
-    //Start the Genesis Main Menu
-    game.StartGame();
-
-    //Return 0: Program ended as normal
-    return 0;
+    
 
 }
 
