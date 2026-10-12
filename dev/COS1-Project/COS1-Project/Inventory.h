@@ -35,6 +35,15 @@ public:
 	//Remove a specific quantity of an item
 	bool RemoveItem(const std::string& itemName, int quantity);
 
+	//Check if item has enough quantity
+	bool HasItem(const std::string& itemName, int quantity = 1) const;
+
+	//Display all inventory Items
+	void DisplayInventory() const;
+
+	//Get quantity of an item 
+	int GetItemQuantity(const std::string& itemName) const;
+
 	//Get the total number of distinct item types 
 	int GetItemCount() const;
 

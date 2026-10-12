@@ -92,3 +92,7 @@ bool Inventory::RemoveItem(const std::string& itemName, int quantity)
 	return false;
 
 }
+
+//============================================
+// CHECK AVAILABILITY
+//=============================================
