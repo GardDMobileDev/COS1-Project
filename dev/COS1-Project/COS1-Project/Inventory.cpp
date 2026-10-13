@@ -173,9 +173,11 @@ int Inventory::GetItemCount() const
 //=============================================
 void Inventory::ResetInventory() 
 {
+	//Need to use to reset : removes all elements from vector
 	itemNames.clear();
 	itemQuantity.clear();
 
+	//Restore starting items
 	AddItem("Sack of bread",3);
 	AddItem("Water container", 3);
 	AddItem("Aloe for healing", 1);
