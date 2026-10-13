@@ -44,7 +44,7 @@ void Event::SetEvent(const std::string& name, const std::string& description)
 //==================================================
 void Event::DisplayEvent() const 
 {
-	std::cout << "\n=================================================\n";
+	std::cout << "\n===============================================\n";
 	std::cout << "EVENT: " << eventName << "\n";
 	std::cout << "=================================================\n";
 	std::cout << eventDescription << "\n";
@@ -68,7 +68,7 @@ void Event::StartEvent(Player& player, const Location& location)
 	std::cout << "\nLocation: " << location.GetName() << "\n";
 
 	//Display the available player choices 
-	std::cout << "\nWhat would you like to do?";
+	std::cout << "What would you like to do\n\n?";
 	std::cout << "1. Rest and recover\n?";
 	std::cout << "2. Search for supplies\n?";
 	std::cout << "3. Continue traveling\n?";
