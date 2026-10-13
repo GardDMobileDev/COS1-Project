@@ -87,7 +87,7 @@ void Event::StartEvent(Player& player, const Location& location)
 				std::cout << "Input cant be blank. Try again.\n";
 				continue;
 			}
-
+		 
 			//Convert input to an int
 			selection = std::stoi(input);
 
