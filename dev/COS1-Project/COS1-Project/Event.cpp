@@ -148,6 +148,4 @@ std::cout << "Food:       " << player.GetFood() << "\n";
 std::cout << "Water:      " << player.GetWater() << "\n";
 std::cout << "Supplies:   " << player.GetSupplies() << "\n";
 
-
-
 }

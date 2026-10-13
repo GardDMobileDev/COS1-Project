@@ -20,10 +20,10 @@ Traveler::Traveler(Player& player, Location& currentLocation) :
 	//Week 3 Updates
 	locations{
 	Location("Garden of Eden", "Adam and Eve were placed to attend the Garden."),
-	Location("Noah's Ark", "Noah builds the Ark for the flood."),
+	Location("Noah's Ark", "Noah builds the Ark in preparation for the flood."),
 	Location("Tower of Babel", "Tower of Babel built to reach the Heavens."),
 	Location("Abraham's Journey", "Abraham leaves his home on God's command."),
-	Location("Egypt", "Joseph's story begins.")
+	Location("Egypt", "Joseph's story begins in Egypt.")
     },
 	inventory(),
 	currentDay(1), 
@@ -155,7 +155,7 @@ void Traveler::TravelNext()
 	{
 		if (locations[i].GetName() == currentLocation.GetName())
 		{
-			currentIndex = static_cast<int>(i);
+			currentIndex = i;
 			break;
 		}
 	}
@@ -189,10 +189,53 @@ void Traveler::TravelNext()
 	std::cout << "Day: " << currentDay << "\n";
 	std::cout << currentLocation.GetDescription() << "\n";
 
-	//Week 3 Update
+	//WEEK 3 UPDATES
+	
+	//Checks for defeat 
 	if (player.GetHealth() <= 0 ||
 		player.GetFood() <= 0 ||
 		player.GetWater() <= 0)
+	{
+		DisplayHeader("GAME OVER");
+		std::cout << "Your journey has come to an end.\n";
+		journeyActive = false;
+		return;
+	}
+
+	//Set the event for the current location
+	if (currentLocation.GetName() == "Noah's Ark")
+	{
+		event.SetEvent("Preparing for the flood", "Your group hears news of the flood" 
+			"You must decide how to prepare!");
+	}
+	else if (currentLocation.GetName() == "Tower of Babel")
+	{
+		event.SetEvent("The Tower of Babel", "Your group encounters people building a tower" 
+			"You must decide how to use your resources");
+
+	}
+	else if (currentLocation.GetName() == "Abraham's Journey")
+	{
+		event.SetEvent("Abrahams Journey", "Your group has traveled for several days" 
+			"Your supplies are getting low");
+	}
+	else if (currentLocation.GetName() == "Egypt")
+	{
+		event.SetEvent("Arrival in Egypt", "Your group has reached Egpty, your group"
+		"is suffering from famine.");
+	}
+	else
+	{
+		return;
+	}
+
+	//This will start the event and apply player selection
+	event.StartEvent(player, currentLocation);
+
+	//Check for defeat 
+	if (player.GetHealth() <= 0 ||
+		player.GetFood() <= 0 ||
+		player.GetWater())
 	{
 		DisplayHeader("GAME OVER");
 		std::cout << "Your journey has come to an end.\n";
@@ -476,6 +519,7 @@ void Traveler::ResetJourney()
 	currentLocation = locations.front();
 
 	player.ResetStats();
+
 	inventory.ResetInventory();
 
 }

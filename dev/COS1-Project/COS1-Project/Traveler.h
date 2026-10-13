@@ -4,12 +4,7 @@
 #include "Player.h"
 #include "Location.h"
 #include "Inventory.h"
-
-/*
- This class will keeps track of all the travelers with the player.
-   - The vector will store travelers : can be increased or reduced
-   - Methods : addTraveler, Display and getTravelerSize 
-*/
+#include "Event.h"
 
 //================================
 //  TRAVELER UPDATES 
@@ -42,12 +37,20 @@ private:
 	//Is the journey active 
 	bool journeyActive;
 
-	//Stores the players individual inventory items
+	//Stores the players individual inventory items/event management
 	Inventory inventory;
+	Event event;
+
+
 
 public: 
 	//Constructor : Gets Location/Player objects
 	Traveler(Player& player, Location& currentLocation);
+
+
+	//==================================================
+	//          JOURNEY CONTROLS
+	//==================================================
 
 	//Start Journey Menu 
 	void StartJourney();
@@ -55,26 +58,38 @@ public:
 	//Will move player to next location 
 	void TravelNext();
 
+	//End Current Journey 
+	void EndJourney();
+
+	//Issue Week 3: Need to create a method to "refresh journey, 
+	//new journey started at end of last 
+	void ResetJourney();
+
+
+	//==================================================
+	//          DISPLAY METHODS
+	//==================================================
 	//Displays Players current status 
 	void DisplayStats();
 
 	//Display Location
 	void DisplayLocation();
 
-	//Hanlds a selection at Genesis Location 
-	void MakeLocationSelection();
-
-	//End Current Journey 
-	void EndJourney();
 
 	//Display Inventory 
 	void DisplayInventory();
 
+
+
+	//==================================================
+	//          PLAYER CHOICES
+	//==================================================
+
+	//Hanlds a selection at Genesis Location 
+	void MakeLocationSelection();
+
+	
 	//Allows player to use an inventory item
 	void UseInventoryItem();
-
-	//Issue Week 3: Need to create a method to "refresh journey, 
-	//new journey started at end of last 
-	void ResetJourney();
-
+	
 };
