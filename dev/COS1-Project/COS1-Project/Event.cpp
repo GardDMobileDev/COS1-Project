@@ -87,6 +87,20 @@ void Event::StartEvent(Player& player, const Location& location)
 				std::cout << "Input cant be blank. Try again.\n";
 				continue;
 			}
+
+			//Convert input to an int
+			selection = std::stoi(input);
+
+			//Validate the selection
+			if (selection < 1 || selection > 3)
+			{
+				std::cout << "Invalid selection. Select 1, 2, or 3.\n";
+				continue;
+			}
+
+			//Valid selection then exit loop
+			break;
+
 		}
 		catch (const std::invalid_argument&)
 		{
