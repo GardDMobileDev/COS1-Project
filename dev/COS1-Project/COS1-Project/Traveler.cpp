@@ -1,39 +1,39 @@
 #include "Traveler.h"
 #include "Player.h"
+#include "Location.h"
+#include "Inventory.h"
 #include <iostream>
 #include "GameUI.h"
 #include <string>
 #include <vector>
 #include <limits>
-
-
-/*
- This will show what to do with the information from Traveler.h
-  - holds the travelers that will be from the book of Genesis
-*/
-
-/*
-Constructor
-  Adam: first human created to tend to Gods Creation
-  Noah: Chose to preserve human/animal life during the flood because of his faith
-  Abraham: father of a great nation: Called by God because of his faith and God would
-  allow his generations to inherit land and be blessed through him
-*/
-
+#include <cctype>
 
 //==================================================
-// WEEK 2 UPDATES:
-// Added continuous journey menu 
-// Added Day Counter 
-// Added Travel between locations 
-// Added food and water consumption
-// Added location selections 
-// Updated required getline/try/catch
+//   TRAVELER CONSTRUCTOR 
+// 
+// Connects Player, Locatoin and Inventory
+// Initialized the Bible Trail Journey
 //==================================================
 Traveler::Traveler(Player& player, Location& currentLocation) :
-	player(player), currentLocation(currentLocation), currentDay(1), 
+	player(player), currentLocation(currentLocation),
+	//Week 3 Updates
+	locations{
+	Location("Garden of Eden", "Adam and Eve were placed to attend the Garden."),
+	Location("Noah's Ark", "Noah builds the Ark for the flood."),
+	Location("Tower of Babel", "Tower of Babel built to reach the Heavens."),
+	Location("Abraham's Journey", "Abraham leaves his home on God's command."),
+	Location("Egypt", "Joseph's story begins.")
+    },
+	inventory(),
+	currentDay(1), 
 	journeyActive(false)
 {
+     //Set the starting location if it is uknown
+	if (currentLocation.GetName() == "God is creating the Heavens and Earth. You are at the beginning.")
+	{
+		currentLocation = locations.front();
+	}
 
 }
 
@@ -63,11 +63,18 @@ void Traveler::StartJourney()
 		std::cout << "\n1. Travel to Next Location\n";
 		std::cout << "2. View Player Stats\n";
 		std::cout << "3. View Current Location\n";
-		std::cout << "4. Make A Location Selection\n";
-		std::cout << "5. End Journey \n";
+		std::cout << "4. Make A Location Selection\n"; //update
+		std::cout << "5. View Inventory\n"; 
+		std::cout << "6. Use an Inventory Item\n";
+        std::cout << "7. End Journey \n";
 		std::cout << "\nEnter your selection: ";
 
-		std::getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+		{
+			journeyActive = false;
+			break;
+		}
+
 
 		try
 		{
@@ -81,7 +88,7 @@ void Traveler::StartJourney()
 			//Convert to integer
 			selection = std::stoi(input);
 
-			if (selection < 1 || selection > 5)
+			if (selection < 1 || selection > 7)
 			{
 				std::cout << "Please select a number from the menu.\n";
 				continue;
@@ -117,6 +124,14 @@ void Traveler::StartJourney()
 		}
 		else if (selection == 5)
 		{
+			DisplayInventory();
+		}
+		else if (selection == 6)
+		{
+			UseInventoryItem();
+		}
+		else if (selection == 7)
+		{
 			EndJourney();
 		}
 
@@ -132,57 +147,57 @@ void Traveler::StartJourney()
 //==================================================
 void Traveler::TravelNext() 
 {
-	//Locations from previous vector : Name/Description 
-	static const std::vector<Location> locations =
-	{
-		Location("Garden of Eden", "Adam and Eve were placed to attend the Garden."),
-		Location("Noah's Ark", "Noah builds the Ark for the flood."),
-		Location("Tower of Babel", "Tower of Babel built to reach the Heavens."),
-		Location("Abraham's Journey", "Abraham leaves his home on God's command."),
-		Location("Egypt", "Joseph's story begins.")
 
-	};
-
-	//Find current location 
+	//Find the current location
 	int currentIndex = 0;
 
-	for (int i = 0; i < locations.size(); i++)
-	{ 
+	for (int i = 0; i < locations.size(); ++i)
+	{
 		if (locations[i].GetName() == currentLocation.GetName())
 		{
 			currentIndex = static_cast<int>(i);
 			break;
 		}
-
 	}
 
-	//This Locatfion completes journey 
-	if (currentIndex == static_cast<int>(locations.size() -1))
+	//Check if final location was reached 
+	if (currentIndex == static_cast<int>(locations.size()) - 1)
 	{
-		std::cout << "\nYou reached the final location: Egypt.\n";
-		std::cout << "\nYour Journey is complete!\n";
+		DisplayHeader("JOURNEY COMPLETE");
+
+		std::cout << "Your party has reached Egypt!\n";
+		std::cout << "Your journey through Genesis is complete\n";
+		std::cout << "\N YOU WIN!\n";
 
 		journeyActive = false;
 		return;
-
 	}
 
-	//Advance the day 
+	//Advvance the day 
 	++currentDay;
 
-	//Consume resources : food and water 
-	std::cout << "\nYou traveled for one day.\n";
-    
+	//Consume resources 
 	player.ChangeFood(-5);
 	player.ChangeWater(-5);
 
-	//Move to next location 
+	std::cout << "You traveled for one day.\n";
+
+	//Move to the next location
 	currentLocation = locations[currentIndex + 1];
 
-	std::cout << "You have arrive at " << currentLocation.GetName() << "\n";
+	std::cout << "You have arrived at " << currentLocation.GetName() << "\n";
 	std::cout << "Day: " << currentDay << "\n";
 	std::cout << currentLocation.GetDescription() << "\n";
 
+	//Week 3 Update
+	if (player.GetHealth() <= 0 ||
+		player.GetFood() <= 0 ||
+		player.GetWater() <= 0)
+	{
+		DisplayHeader("GAME OVER");
+		std::cout << "Your journey has come to an end.\n";
+		journeyActive = false;
+	}
 }
 
 
@@ -213,6 +228,145 @@ void Traveler::DisplayLocation()
 	std::cout << currentLocation.GetDescription();
 
 }
+
+//==================================================
+//    DISPLAY CURRENT LOCATION 
+// Week 3 Update : Shows all items/quantities 
+//==================================================
+void Traveler::DisplayInventory() 
+{
+	inventory.DisplayInventory();
+}
+
+//==================================================
+//    USE INVENTORY ITEM
+// Week 3 Update
+// Sack of bread: +10 food 
+// Water container: +10 water
+// Aloe for healing: +20 health, maximum 100
+//==================================================
+void Traveler::UseInventoryItem() 
+{
+	std::string input;
+	int selection = 0;
+
+	DisplayHeader("USE INVENTORY ITEM");
+
+	std::cout << "Choose an item to use:\n\n";
+	std::cout << "1. Sack of bread(Restore 10 food)\n";
+	std::cout << "2. Water Container(Restore 10 water)\n";	
+	std::cout << "3. Aloe for healing (Restore 20 health)\n";
+	std::cout << "4. Cancel\n\n";
+
+	std::cout << "Enter your selection: ";
+
+	if (!std::getline(std::cin, input))
+	{
+		journeyActive = false;
+		return;
+	}
+
+	try
+	{
+		if (input.empty())
+		{
+			std::cout << "Input cant be blank. Try again.\n";
+			return;
+		}
+
+		
+	}
+	catch (const std::invalid_argument&)
+	{
+		std::cout << "Number too large.\n";
+		return;
+	}
+
+	//Cancel item usage
+	if (selection == 4)
+	{
+		std::cout << "Item usage cancelled.\n";
+		return;
+	}
+
+	//Sack of bread 
+	if (selection == 1)
+	{
+		if (!inventory.HasItem("Sack of bread"))
+		{
+			std::cout << "You have no sacks of bread.\n";
+			return;
+		}
+
+		//Remove item ONLY after confirming availability 
+		inventory.RemoveItem("Sack of bread", 1);
+
+		player.ChangeFood(10);
+		std::cout << "You used a sack of bread.\n";
+		std::cout << "Food increased by 10.\n";
+
+	}
+	else if (selection == 2)
+	{ 
+		//Water container 
+		if (!inventory.HasItem("Water container"))
+		{
+			std::cout << "You dont have any water containers.\n";
+			return;
+		}
+
+		inventory.RemoveItem("Water container", 1);
+		player.ChangeWater(10);
+
+		std::cout << "You used water container\n";
+		std::cout << "Water increased by 10\n";
+	
+	}
+	else if (selection == 3)
+	{
+		//Aloe for healing 
+		if (inventory.HasItem("Aloe for healing"))
+		{
+			std::cout << "You do not have any aloe for healing.\n";
+			return;
+
+		}
+
+		//Avoid consuming healing items at full health
+		if (player.GetHealth() >= 100)
+		{
+			std::cout << "Your health is already at it's max.\n";
+			std::cout << "Save your aloe for when you need it.\n";
+			return;
+		}
+
+		inventory.RemoveItem("Aloe for healing", 1);
+		player.ChangeHealth(20);
+
+		std::cout << "You used aloe for healing\n";
+		std::cout << "Health increased by 20, up to a maximum of 100.\n";
+
+	}
+
+	//Display updated stats 
+	std::cout << "\nUpdated Resources\n";
+	std::cout << "Health: " << player.GetHealth() << "\n";
+	std::cout << "Food: " << player.GetFood() << "\n";
+	std::cout << "Water: " << player.GetWater() << "\n";
+
+	//Check defeat conditions after item usage
+	if (player.GetHealth() <= 0 ||
+		player.GetFood() <= 0 ||
+		player.GetWater() <= 0)
+	{
+		DisplayHeader("GAME OVER");
+		std::cout << "Your journey has come to an end\n";
+
+		journeyActive = false;
+
+	}
+}
+
 
 //==================================================
 //    MAKE A LOCATION SELECTION
@@ -286,8 +440,7 @@ void Traveler::MakeLocationSelection()
 //==================================================
 //       END JOURNEY
 // Week 2 Updates: input and getline
-// This allows user to confirm if they are ending
-// the journey
+// Accepts Yes or y to end the journeys
 //==================================================
 void Traveler::EndJourney()
 {
@@ -307,5 +460,22 @@ void Traveler::EndJourney()
 	{
 		std::cout << "Your journey will continue.";
 	}
+
+}
+
+//==================================================
+// RESET JOURNEY
+// Resets the game state for a new journey.
+//==================================================
+void Traveler::ResetJourney() 
+{
+	currentDay = 1;
+	journeyActive = false;
+
+	//reset the starting locaiton 
+	currentLocation = locations.front();
+
+	player.ResetStats();
+	inventory.ResetInventory();
 
 }

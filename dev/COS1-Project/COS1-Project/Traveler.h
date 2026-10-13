@@ -3,6 +3,7 @@
 #include <vector>
 #include "Player.h"
 #include "Location.h"
+#include "Inventory.h"
 
 /*
  This class will keeps track of all the travelers with the player.
@@ -17,6 +18,11 @@
 // Connext Player/Location class
 // Handle Managing Resources
 // Declare travel, stats and location selection
+// 
+// Week 3 Updates:
+// Manage Inventory and item usage
+// Added Inventory inventory;
+// Added DisplayInventory() 
 //================================
 class Traveler
 {
@@ -35,6 +41,9 @@ private:
 
 	//Is the journey active 
 	bool journeyActive;
+
+	//Stores the players individual inventory items
+	Inventory inventory;
 
 public: 
 	//Constructor : Gets Location/Player objects
@@ -57,5 +66,15 @@ public:
 
 	//End Current Journey 
 	void EndJourney();
+
+	//Display Inventory 
+	void DisplayInventory();
+
+	//Allows player to use an inventory item
+	void UseInventoryItem();
+
+	//Issue Week 3: Need to create a method to "refresh journey, 
+	//new journey started at end of last 
+	void ResetJourney();
 
 };

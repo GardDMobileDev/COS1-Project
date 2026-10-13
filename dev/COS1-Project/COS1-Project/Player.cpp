@@ -146,3 +146,17 @@ void Player::ChangeMorale(int consumption)
 
 }
 
+//==================================================
+// RESET PLAYER STATS
+// Restores starting values for a new journey
+//==================================================
+void Player::ResetStats() 
+{
+	name = "Traveler";
+	health = 100;
+	food = 100;
+	water = 100;
+	supplies = 50;
+	morale = 75;
+
+}

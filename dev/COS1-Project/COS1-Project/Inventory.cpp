@@ -167,3 +167,17 @@ int Inventory::GetItemCount() const
 {
 	return static_cast<int>(itemNames.size());
 }
+
+//============================================
+// RESET INVENTORY
+//=============================================
+void Inventory::ResetInventory() 
+{
+	itemNames.clear();
+	itemQuantity.clear();
+
+	AddItem("Sack of bread",3);
+	AddItem("Water container", 3);
+	AddItem("Aloe for healing", 1);
+
+}

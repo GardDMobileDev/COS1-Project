@@ -53,6 +53,8 @@ void Game::StartGame()
 //================================
 void Game::StartJourney()
 {
+    traveler.ResetJourney();
+
     DisplayHeader("BEGIN YOUR JOURNEY");
 
 

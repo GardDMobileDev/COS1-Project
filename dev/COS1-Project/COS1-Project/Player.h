@@ -53,4 +53,8 @@ class Player
 
 	//Display players stats
 	void DisplayStats() const;
+    
+	//Reset player stats
+	void ResetStats();
+
 };

@@ -47,5 +47,8 @@ public:
 	//Get the total number of distinct item types 
 	int GetItemCount() const;
 
+	//Reset 
+	void ResetInventory();
+
 };
 
