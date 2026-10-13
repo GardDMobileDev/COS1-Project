@@ -41,6 +41,9 @@ private:
 	Inventory inventory;
 	Event event;
 
+	//Validation Helper Method
+	bool GetMenuSelection(const std::string& prompt, int minSelection, 
+		int maxSelection, int& selection);
 
 
 public: 

@@ -41,12 +41,10 @@ std::string Location::GetDescription() const
 void Location::DisplayLocation() const 
 {
 	std::cout << "\n";
-	std::cout << "=====================================================================";
+	DisplayDivider();
 	std::cout << "\n" << name << "\n";
-	std::cout << "=====================================================================";
+	DisplayDivider();
 
 	std::cout << description << "\n";
-
-	std::cout << "=====================================================================";
 
 }

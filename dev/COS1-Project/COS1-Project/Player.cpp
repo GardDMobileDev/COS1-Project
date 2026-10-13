@@ -63,9 +63,6 @@ void Player::DisplayStats() const
 	std::cout << "Water: " << water << std::endl;
 	std::cout << "Supplies: " << supplies << std::endl;
 	std::cout << "Morale: " << morale << std::endl;
-
-	std::cout << "=====================================================================";
-
 }
 
 //Week 2 Updates: Declarations new methods
@@ -102,6 +99,10 @@ void Player::ChangeFood(int consumption)
 	{
 		food = 0;
 	}
+	else if (food > 100)
+	{
+		food = 100;
+	}
 
 }
 
@@ -114,6 +115,10 @@ void Player::ChangeWater(int consumption)
 	if (water < 0)
 	{
 		water = 0;
+	}
+	else if (water > 100)
+	{
+		water = 100;
 	}
 
 }

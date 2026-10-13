@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include "Event.h"
+#include "GameUI.h"
 
 //==================================================
 //   EVENT.CPP 
@@ -44,9 +45,9 @@ void Event::SetEvent(const std::string& name, const std::string& description)
 //==================================================
 void Event::DisplayEvent() const 
 {
-	std::cout << "\n===============================================\n";
+	DisplayDivider();
 	std::cout << "EVENT: " << eventName << "\n";
-	std::cout << "=================================================\n";
+	DisplayDivider();
 	std::cout << eventDescription << "\n";
 
 }
@@ -151,9 +152,9 @@ void Event::StartEvent(Player& player, const Location& location)
 //==================================================
 //   DISPLAY THE PLAYERS UPDATED RESOURCES
 //==================================================
-std::cout << "\n===========================================\n";
+DisplayDivider();
 std::cout << "             CURRENT RESOURCES\n";
-std::cout << "\n===========================================\n";
+DisplayDivider();
 
 
 std::cout << "Health:     " << player.GetHealth() << "\n";

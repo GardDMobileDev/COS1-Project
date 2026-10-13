@@ -53,10 +53,10 @@ void Game::StartGame()
 //================================
 void Game::StartJourney()
 {
+    //Reset the game for a new journey
     traveler.ResetJourney();
 
     DisplayHeader("BEGIN YOUR JOURNEY");
-
 
     //Readd user entry 
     std::string playerName;
@@ -70,15 +70,19 @@ void Game::StartJourney()
     //Prompt user not to leave blank
     while (playerName.empty())
     {
-        std::cout << "Oops! Can't leave blank. Please enter your name: ";
         std::getline(std::cin, playerName);
+
+        if (playerName.empty())
+        {
+            std::cout << "Name cant be blank. Please try again: ";
+        }
     }
 
     //Save name in player object
     player.SetName(playerName);
 
     //Displays Message
-    std::cout << "\nWelcome, " << player.GetName() << "!\n\n";
+    std::cout << "\nWelcome, " << player.GetName() << "!\n";
 
     //Traveler Handler 
     traveler.StartJourney();
@@ -100,7 +104,7 @@ void Game::DisplayMainMenu()
 
 	DisplayHeader("BIBLE TRAIL: BOOK OF GENESIS");
 	std::cout << "               An Interactive Journey Through Genesis\n";
-    std::cout << "=====================================================================\n";
+    DisplayDivider();
     std::cout << "\n";
 
 	std::cout << "1. Start A New Journey\n";
@@ -198,6 +202,19 @@ void Game::DisplayInstructions()
     std::cout << "Manage your travelers and make choices that affect the progress of your journey\n";
     //std::cout << "Save your progress and return to your adventure later\n"; Add Week 4
 
+
+    DisplayHeader("GAME DETAILS: START JOURNEY MENU");
+
+    //The Purpose of the Game: explain to user 
+    std::cout << "Travel Next: Advances player to the next location. Cosumes food and water.\n\n";
+    std::cout << "View Player Stats: Displays the players: name, health, food, water, supplies, and morale.\n\n";
+    std::cout << "View Current Location: Shows the current location and its description.\n\n";
+    std::cout << "Make a Selection: Player can choose and action at the current location.\n\n";
+    std::cout << "View Inventory: Displays the available inventory items and their quantities.\n\n";
+    std::cout << "Use an Inventory Item: Use food, water or healing items to restore resources\n\n";
+    std::cout << "End Journey: Allows the player to stop the current journey.\n\n";
+
+    std::cout << "To play, make a selection from the menu and press ENTER\n\n";
 
 
 

@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Location.h"
 #include "Inventory.h"
+#include "Event.h"
 #include <iostream>
 #include "GameUI.h"
 #include <string>
@@ -50,9 +51,7 @@ void Traveler::StartJourney()
 		std::string input;
 		int selection = 0;
 
-		DisplayDivider();
 		DisplayHeader("YOUR JOURNEY");
-		DisplayDivider();
 
 		//==================================================
 		//      YOUR JOURNEY MENU 
@@ -167,7 +166,7 @@ void Traveler::TravelNext()
 
 		std::cout << "Your party has reached Egypt!\n";
 		std::cout << "Your journey through Genesis is complete\n";
-		std::cout << "\N YOU WIN!\n";
+		std::cout << "\nYOU WIN!\n";
 
 		journeyActive = false;
 		return;
@@ -235,11 +234,12 @@ void Traveler::TravelNext()
 	//Check for defeat 
 	if (player.GetHealth() <= 0 ||
 		player.GetFood() <= 0 ||
-		player.GetWater())
+		player.GetWater() <= 0)
 	{
 		DisplayHeader("GAME OVER");
 		std::cout << "Your journey has come to an end.\n";
 		journeyActive = false;
+		return;
 	}
 }
 
@@ -317,7 +317,14 @@ void Traveler::UseInventoryItem()
 			return;
 		}
 
-		
+		//Convert input to int 
+		selection = std::stoi(input);
+
+		if (selection < 1 || selection > 4)
+		{
+			std::cout << "Please select a number from 1 to 4.\n";
+			return;
+		}	
 	}
 	catch (const std::invalid_argument&)
 	{
@@ -368,7 +375,7 @@ void Traveler::UseInventoryItem()
 	else if (selection == 3)
 	{
 		//Aloe for healing 
-		if (inventory.HasItem("Aloe for healing"))
+		if (!inventory.HasItem("Aloe for healing"))
 		{
 			std::cout << "You do not have any aloe for healing.\n";
 			return;
@@ -429,7 +436,7 @@ void Traveler::MakeLocationSelection()
 	std::cout << "1. Continue the journey\n";
 	std::cout << "2. Explore the location\n";
 	std::cout << "3. Encourage the group\n";
-	std::cout << "4. Enter your selection: \n";
+	std::cout << "\nEnter your selection: \n";
 
 	std::getline(std::cin, input);
 
@@ -438,6 +445,7 @@ void Traveler::MakeLocationSelection()
 		if (input.empty())
 		{
 			std::cout << "Input cannont be blank.\n";
+			return;
 		}
 
 		//Convert input string to int
@@ -522,4 +530,51 @@ void Traveler::ResetJourney()
 
 	inventory.ResetInventory();
 
+}
+
+//==================================================
+// VALIDATION HELPER METHOD
+// Validates menu input and returns selcted value
+//==================================================
+bool Traveler::GetMenuSelection(const std::string& prompt, 
+	int minSelection,
+	int maxSelection, 
+	int& selection) 
+{
+	std::string input;
+
+	//Display prompt and read users input
+	std::cout << prompt;
+
+	if (!std::getline(std::cin, input))
+	{
+		journeyActive = false;
+		return false;
+	}
+
+	//Dont allow blank entries
+	if (input.empty())
+	{
+		std::cout << "Input cant be blank. Please try again.\n";
+		return false;
+	}
+
+	//Only allow one digit 
+	if (input.size() != 1)
+	{
+		std::cout << "Invalid input. Enter a single number from the menu.\n";
+		return false;
+	}
+
+	//Convert value to int
+	selection = input[0] - '0';
+
+	//Make sure selection is within range
+	if (selection < minSelection || selection > maxSelection)
+	{
+		std::cout << "Invalid selection. Select " << minSelection
+			<< maxSelection << ".\n";
+	}
+	//When input is valid
+	return true;
 }

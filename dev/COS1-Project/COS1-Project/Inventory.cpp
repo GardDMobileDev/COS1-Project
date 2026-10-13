@@ -19,7 +19,7 @@ Inventory::Inventory()
 	//Starting items 
 	AddItem("Sack of bread", 3);
 	AddItem("Water container", 3);
-	AddItem("Aloe for healing ", 1);
+	AddItem("Aloe for healing", 1);
 
 }
 
