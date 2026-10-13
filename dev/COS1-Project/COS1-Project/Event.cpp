@@ -87,7 +87,6 @@ void Event::StartEvent(Player& player, const Location& location)
 				std::cout << "Input cant be blank. Try again.\n";
 				continue;
 			}
-
 		}
 		catch (const std::invalid_argument&)
 		{
