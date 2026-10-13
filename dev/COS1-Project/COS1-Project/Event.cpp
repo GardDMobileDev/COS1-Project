@@ -65,13 +65,13 @@ void Event::StartEvent(Player& player, const Location& location)
 	//Display the current event and location
 	DisplayEvent();
 
-	std::cout << "\nLocation: " << location.GetName() << "\n";
+	std::cout << "\nLocation: " << location.GetName() << std::endl;
 
 	//Display the available player choices 
-	std::cout << "What would you like to do\n\n?";
-	std::cout << "1. Rest and recover\n?";
-	std::cout << "2. Search for supplies\n?";
-	std::cout << "3. Continue traveling\n?";
+	std::cout << "What would you like to do?" << std::endl;
+	std::cout << "1. Rest and recover" << std::endl;
+	std::cout << "2. Search for supplies" << std::endl;
+	std::cout << "3. Continue traveling" << std::endl;
 
 	//Validate the players input 
 	while (true)
@@ -110,7 +110,7 @@ void Event::StartEvent(Player& player, const Location& location)
 	case 1: 
 		//Resting restores the groups health 
 		player.ChangeHealth(10);
-		std::cout << "\nYout group rested. Health increased by 10\n";
+		std::cout << "\nYour group rested. Health increased by 10\n";
 		break;
 
 	case 2: 

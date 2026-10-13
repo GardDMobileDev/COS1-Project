@@ -42,10 +42,10 @@ void Location::DisplayLocation() const
 {
 	std::cout << "\n";
 	std::cout << "=====================================================================";
-	std::cout << "          " << name << std::endl;
+	std::cout << "\n" << name << "\n";
 	std::cout << "=====================================================================";
 
-	std::cout << description << std::endl;
+	std::cout << description << "\n";
 
 	std::cout << "=====================================================================";
 

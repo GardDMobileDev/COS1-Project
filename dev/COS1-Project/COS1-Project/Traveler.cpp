@@ -205,24 +205,24 @@ void Traveler::TravelNext()
 	//Set the event for the current location
 	if (currentLocation.GetName() == "Noah's Ark")
 	{
-		event.SetEvent("Preparing for the flood", "Your group hears news of the flood" 
-			"You must decide how to prepare!");
+		event.SetEvent("Preparing for the flood ", "Your group hears news of the flood" 
+			" You must decide how to prepare!");
 	}
 	else if (currentLocation.GetName() == "Tower of Babel")
 	{
-		event.SetEvent("The Tower of Babel", "Your group encounters people building a tower" 
-			"You must decide how to use your resources");
+		event.SetEvent("The Tower of Babel ", "Your group encounters people building a tower " 
+			" You must decide how to use your resources");
 
 	}
 	else if (currentLocation.GetName() == "Abraham's Journey")
 	{
-		event.SetEvent("Abrahams Journey", "Your group has traveled for several days" 
-			"Your supplies are getting low");
+		event.SetEvent("Abrahams Journey ", "Your group has traveled for several days " 
+			" Your supplies are getting low");
 	}
 	else if (currentLocation.GetName() == "Egypt")
 	{
-		event.SetEvent("Arrival in Egypt", "Your group has reached Egpty, your group"
-		"is suffering from famine.");
+		event.SetEvent("Arrival in Egypt ", "Your group has reached Egpty, your group "
+		" is suffering from famine.");
 	}
 	else
 	{
