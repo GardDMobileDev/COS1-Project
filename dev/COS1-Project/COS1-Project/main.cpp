@@ -7,6 +7,7 @@
 #include "Location.h"
 #include "GameUI.h"
 #include "Game.h"
+#include "Inventory.h"
 
 /*
 FUNCTION DECLARATIONS Week 1
@@ -40,7 +41,14 @@ FUNCTION DECLARATIONS Week 1
 */
 int main()
 {
-    
+    //Create Bible Trail and connect the objects
+    Game game;
+
+    //Start the Genesis Main Menu
+    game.StartGame();
+
+    //Return 0: Program ended as normal
+    return 0;
 
 }
 
