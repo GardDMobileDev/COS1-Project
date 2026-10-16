@@ -1,17 +1,18 @@
 #pragma once
 #include<string>
-
-/*
-Stores information about the person controlling the journey
-  - each player will have member variables below
-  - example: Player player1;
-  - member vars will represent stats of player  
-  - Setters/Getters will be used to access mem vars outside class
-  - Constructor runs when player created
-*/
+//==================================================
+//   PLAYER CLASS
+//
+//   Stores the player's name, health, resources, and
+//   morale throughout the Bible Trail journey.
+//==================================================
 class Player 
 {
-	//private member variables
+	//==================================================
+	//   PLAYER INFORMATION
+	//
+	//  Stores the players name and current stats
+	//==================================================
 	std::string name;
 
 	int health;
@@ -20,41 +21,68 @@ class Player
 	int supplies;
 	int morale;
 
-	//Constructor : will set the players starting value
+	//==================================================
+	//   PLAYER CONSTRUCTOR 
+	//
+	//  initializes the players starting information and 
+	// stats
+	//==================================================
 	public:
 		Player();
 
-   /*
-     Getters: allows access to player information 
-	  - const read but dont change object 
-   */
-		std::string GetName() const;
-		
-		int GetHealth()const;
-		int GetFood() const;
-		int GetWater() const;
-		int GetSupplies() const;
-		int GetMorale() const;
+	//==================================================
+	//   GETS PLAYER NAME
+	//
+	//   Returns the players name without modifying it 
+	//==================================================
+	std::string GetName() const;
 
-	 /*
-	   Setters: update players name
-	   &: wont modify string, allow access and not copy
-	 */
+	//==================================================
+	//   GETS PLAYER 
+	//   HEALTH, FOOD, WATER, SUPPLIES, MORALE
+
+	//   Returns the players current health, food
+	//   water, supplies and moral
+	//==================================================
+		
+	int GetHealth()const;
+	int GetFood() const;
+	int GetWater() const;
+	int GetSupplies() const;
+	int GetMorale() const;
+
+	//==================================================
+	//   SETS PLAYER NAME 
+	//
+	//  Updates players name
+	//==================================================
 	void SetName(const std::string& playerName);
 
-	//WEEK 2 UPDATES: will be + or -
+	//==================================================
+	//   CHANGES PLAYERS
+	//   HEALTH, FOOD, WATER, SUPPLIES AND MORALE
+	//
+	//   Adjusts by given amount  
+	//==================================================
 	void ChangeHealth(int consumption);
 	void ChangeFood(int consumption);
 	void ChangeWater(int consumption);
 	void ChangeSupplies(int consumption);
 	void ChangeMorale(int consumption);
 
-
-
-	//Display players stats
+	//==================================================
+	//  DISPLAYS STATS
+	//
+	//   Displays the players current stats
+	//==================================================
 	void DisplayStats() const;
     
-	//Reset player stats
-	void ResetStats();
+	//==================================================
+	//  RESETS PLAYER STATS
+	//
+	//   Restores the players stats to their 
+	//   starting values
+	//==================================================	
+   void ResetStats();
 
 };

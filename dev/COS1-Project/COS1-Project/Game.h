@@ -5,43 +5,89 @@
 
 
 //==================================================
-//   WEEK 2 UPDATES:
-// - Added the Game class to control console app 
-// - This will connect: Player, Traveler, Location
+//   GAME CLASS 
+// 
+//  Controls the main game flow, menu nav,
+// player informationa and journey systems
 //==================================================
 class Game 
 {
   private:
 	  
-	  //This will store information about the player 
+	//==================================================
+	//  PLAYER 
+	// 
+	//  Stores the players informaton and status
+	//==================================================
 	  Player player;
 
-	  //Stores the current Genesis 
+
+	//==================================================
+	// CURRENT LOCATION 
+	// 
+	// Stores the current Genesis location
+	//==================================================
 	  Location currentLocation;
 
-	  //Store travlers that are with the player
+	
+	//==================================================
+	// TRAVELER 
+	// 
+	// Manages travel, journey progress and resources 
+	//==================================================
 	  Traveler traveler;
 
-	  //This will determine if the game should still run
+
+	//==================================================
+	// RUNNING STATE 
+	// 
+	// Determins wheter the main game loop continues
+	//==================================================
 	  bool isRunning;
 
   public:
 	
-	  //Constructor 
+	//==================================================
+	// GAME CONSTRUCTOR
+	// 
+	// Initializes the game and its member objects
+	//================================================== 
 	  Game();
 
-	  //Starts game loop 
+	//==================================================
+	// START GAME
+	// 
+	// Runs the main game loop
+	//================================================== 
 	  void StartGame();
 
-	  //Display Main Menu
+	//==================================================
+	// DISPLAYS MAIN MENU 
+	// 
+	// Displays the main menu and processes selections
+	//================================================== 
 	  void DisplayMainMenu();
 
-	  //Display Instructions
+
+	//==================================================
+	// DISPLAYS INSTRUCTIONS
+	// 
+	// Displays the game instructions and features 
+	//================================================== 
 	  void DisplayInstructions();
 
-	  //Start a new journey
+	 
+	//==================================================
+	// STARY JOURNEY 
+	// 
+	// Initalizes and begins a new journey 
+	//================================================== 
 	  void StartJourney();
 
-	  //Exit Game
+	//==================================================
+	// EXIT GAME 
+	// 
+	// Stops the game loop and displays the exit message
+	//================================================== 
 	  void ExitGame();
 };

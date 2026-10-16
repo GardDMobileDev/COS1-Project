@@ -1,20 +1,13 @@
 #include "Traveler.h"
-#include "Player.h"
-#include "Location.h"
-#include "Inventory.h"
-#include "Event.h"
-#include <iostream>
 #include "GameUI.h"
+#include <iostream>
 #include <string>
-#include <vector>
-#include <limits>
-#include <cctype>
 
 //==================================================
 //   TRAVELER CONSTRUCTOR 
 // 
-// Connects Player, Locatoin and Inventory
-// Initialized the Bible Trail Journey
+// Initializes the player and location references, 
+// Genesis locations, inventoru, and journey state
 //==================================================
 Traveler::Traveler(Player& player, Location& currentLocation) :
 	player(player), currentLocation(currentLocation),
@@ -38,9 +31,12 @@ Traveler::Traveler(Player& player, Location& currentLocation) :
 
 }
 
+
 //==================================================
-//          START JOURNEY 
-// Will run until player ends game
+// START JOURNEY 
+//
+// Displays the journey menu and processes player
+// selections until the journey ends
 //==================================================
 void Traveler::StartJourney()
 {
@@ -48,7 +44,6 @@ void Traveler::StartJourney()
 
 	while (journeyActive)
 	{
-		std::string input;
 		int selection = 0;
 
 		DisplayHeader("YOUR JOURNEY");
@@ -66,89 +61,44 @@ void Traveler::StartJourney()
 		std::cout << "5. View Inventory\n"; 
 		std::cout << "6. Use an Inventory Item\n";
         std::cout << "7. End Journey \n";
-		std::cout << "\nEnter your selection: ";
 
-		if (!std::getline(std::cin, input))
+		if (!GetMenuSelection("\nEnter your selection: ", 1,7, selection))
 		{
-			journeyActive = false;
-			break;
-		}
-
-
-		try
-		{
-			//Handle blank input 
-			if (input.empty())
+			if (!journeyActive)
 			{
-				std::cout << "Cannot be blank. Please try again.\n";
-				continue;
+				break;
 			}
 
-			//Convert to integer
-			selection = std::stoi(input);
-
-			if (selection < 1 || selection > 7)
-			{
-				std::cout << "Please select a number from the menu.\n";
-				continue;
-			}
-		}
-		catch (const std::invalid_argument&)
-		{
-			std::cout << "Invalid input. Please enter a number.\n";
-			continue;
-		}
-		catch (const std::out_of_range&)
-		{
-			std::cout << "Number is too large. Try again..\n";
 			continue;
 		}
 
-		//Selections 
-		if (selection == 1)
+		switch (selection)
 		{
-			TravelNext();
-		}
-		else if (selection == 2)
-		{
-			DisplayStats();
-		}
-		else if (selection == 3)
-		{
-			DisplayLocation();
-		}
-		else if (selection == 4)
-		{
-			MakeLocationSelection();
-		}
-		else if (selection == 5)
-		{
-			DisplayInventory();
-		}
-		else if (selection == 6)
-		{
-			UseInventoryItem();
-		}
-		else if (selection == 7)
-		{
-			EndJourney();
+
+		case 1:TravelNext(); break;
+        case 2:DisplayStats();break;
+        case 3:DisplayLocation();break;
+		case 4:MakeLocationSelection();break;
+        case 5:DisplayInventory();break;
+        case 6:UseInventoryItem();break;
+		case 7:EndJourney();break;
+		default: std::cout << "Invalid selection. Please try again.\n"; break;
 		}
 
 	}
 }
 
-
 //==================================================
-//      TRAVEL TO NEXT LOCATION
-// 
-// Traveling takes 1 Day
-// Resources will decrease by 5
+// TRAVEL TO NEXT LOCATION
+//
+// Advances the journey by one day, consumes food 
+// and water, and processes location events
 //==================================================
 void Traveler::TravelNext() 
 {
 
 	//Find the current location
-	int currentIndex = 0;
+	int currentIndex = -1;
 
 	for (int i = 0; i < locations.size(); ++i)
 	{
@@ -157,6 +107,13 @@ void Traveler::TravelNext()
 			currentIndex = i;
 			break;
 		}
+	}
+	
+	//Verify that current location exists
+	if (currentIndex == -1)
+	{
+		std::cout << "Unable to location current location";
+		return;
 	}
 
 	//Check if final location was reached 
@@ -172,25 +129,21 @@ void Traveler::TravelNext()
 		return;
 	}
 
-	//Advvance the day 
 	++currentDay;
 
-	//Consume resources 
 	player.ChangeFood(-5);
 	player.ChangeWater(-5);
 
 	std::cout << "You traveled for one day.\n";
 
-	//Move to the next location
 	currentLocation = locations[currentIndex + 1];
 
 	std::cout << "You have arrived at " << currentLocation.GetName() << "\n";
 	std::cout << "Day: " << currentDay << "\n";
 	std::cout << currentLocation.GetDescription() << "\n";
 
-	//WEEK 3 UPDATES
 	
-	//Checks for defeat 
+	//Checks whether journey can continue
 	if (player.GetHealth() <= 0 ||
 		player.GetFood() <= 0 ||
 		player.GetWater() <= 0)
@@ -201,7 +154,12 @@ void Traveler::TravelNext()
 		return;
 	}
 
-	//Set the event for the current location
+//==================================================
+// SET LOCATION EVENT 
+//
+// Selects an event based on current location
+//==================================================
+
 	if (currentLocation.GetName() == "Noah's Ark")
 	{
 		event.SetEvent("Preparing for the flood ", "Your group hears news of the flood" 
@@ -228,10 +186,9 @@ void Traveler::TravelNext()
 		return;
 	}
 
-	//This will start the event and apply player selection
 	event.StartEvent(player, currentLocation);
 
-	//Check for defeat 
+	//Check whether the event caused the journey to end
 	if (player.GetHealth() <= 0 ||
 		player.GetFood() <= 0 ||
 		player.GetWater() <= 0)
@@ -245,7 +202,9 @@ void Traveler::TravelNext()
 
 
 //==================================================
-//    DISPLAY PLAYER STATS
+// DISPLAYS THE PLAYERS STATS
+//
+// Displays the players current stats
 //==================================================
 void Traveler::DisplayStats() 
 {
@@ -262,6 +221,9 @@ void Traveler::DisplayStats()
 
 //==================================================
 //    DISPLAY CURRENT LOCATION 
+// 
+//  Displays the current locations name and 
+// description
 //==================================================
 void Traveler::DisplayLocation() 
 {
@@ -273,8 +235,10 @@ void Traveler::DisplayLocation()
 }
 
 //==================================================
-//    DISPLAY CURRENT LOCATION 
-// Week 3 Update : Shows all items/quantities 
+//    DISPLAY INVENTORY
+// 
+// Displays the available inventory items
+// and their quantities
 //==================================================
 void Traveler::DisplayInventory() 
 {
@@ -283,14 +247,15 @@ void Traveler::DisplayInventory()
 
 //==================================================
 //    USE INVENTORY ITEM
-// Week 3 Update
+// 
+// Allows the player to consume resources 
+// 
 // Sack of bread: +10 food 
 // Water container: +10 water
 // Aloe for healing: +20 health, maximum 100
 //==================================================
 void Traveler::UseInventoryItem() 
 {
-	std::string input;
 	int selection = 0;
 
 	DisplayHeader("USE INVENTORY ITEM");
@@ -301,34 +266,8 @@ void Traveler::UseInventoryItem()
 	std::cout << "3. Aloe for healing (Restore 20 health)\n";
 	std::cout << "4. Cancel\n\n";
 
-	std::cout << "Enter your selection: ";
-
-	if (!std::getline(std::cin, input))
+	if (!GetMenuSelection("Enter your selection: ", 1, 4, selection))
 	{
-		journeyActive = false;
-		return;
-	}
-
-	try
-	{
-		if (input.empty())
-		{
-			std::cout << "Input cant be blank. Try again.\n";
-			return;
-		}
-
-		//Convert input to int 
-		selection = std::stoi(input);
-
-		if (selection < 1 || selection > 4)
-		{
-			std::cout << "Please select a number from 1 to 4.\n";
-			return;
-		}	
-	}
-	catch (const std::invalid_argument&)
-	{
-		std::cout << "Number too large.\n";
 		return;
 	}
 
@@ -420,11 +359,12 @@ void Traveler::UseInventoryItem()
 
 //==================================================
 //    MAKE A LOCATION SELECTION
-// Will add additional consequences in Week 3
+// 
+// Allows the player to continue traveling,
+// explore the location or encourage the group
 //==================================================
 void Traveler::MakeLocationSelection() 
 {
-	std::string input;
 	int selection = 0;
 
 	std::cout << "\n";
@@ -436,31 +376,9 @@ void Traveler::MakeLocationSelection()
 	std::cout << "1. Continue the journey\n";
 	std::cout << "2. Explore the location\n";
 	std::cout << "3. Encourage the group\n";
-	std::cout << "\nEnter your selection: \n";
 
-	std::getline(std::cin, input);
-
-	try
+	if (!GetMenuSelection("Enter your selection: ", 1, 3, selection))
 	{
-		if (input.empty())
-		{
-			std::cout << "Input cannont be blank.\n";
-			return;
-		}
-
-		//Convert input string to int
-		selection = std::stoi(input);
-
-		if (selection < 1 || selection > 3)
-		{
-			std::cout << "Please enter 1, 2, or 3.\n";
-			return;
-		}
-
-	}
-	catch (const std::invalid_argument&)
-	{
-		std::cout << "Input is invalid. Please enter a number.";
 		return;
 	}
 
@@ -490,8 +408,9 @@ void Traveler::MakeLocationSelection()
 
 //==================================================
 //       END JOURNEY
-// Week 2 Updates: input and getline
-// Accepts Yes or y to end the journeys
+// 
+//Asks the player to confirm whether the current
+// journey should end
 //==================================================
 void Traveler::EndJourney()
 {
@@ -516,7 +435,9 @@ void Traveler::EndJourney()
 
 //==================================================
 // RESET JOURNEY
-// Resets the game state for a new journey.
+// 
+// Restores the starting location, day counter, 
+// player stats and inventory for a new journey
 //==================================================
 void Traveler::ResetJourney() 
 {
@@ -533,8 +454,10 @@ void Traveler::ResetJourney()
 }
 
 //==================================================
-// VALIDATION HELPER METHOD
-// Validates menu input and returns selcted value
+// GET MENU SELECTION 
+// 
+// Validates menu input and returns whether the
+// selecton falls within specified range
 //==================================================
 bool Traveler::GetMenuSelection(const std::string& prompt, 
 	int minSelection,
@@ -560,7 +483,9 @@ bool Traveler::GetMenuSelection(const std::string& prompt,
 	}
 
 	//Only allow one digit 
-	if (input.size() != 1)
+	if (input.size() != 1 ||
+		input[0] < '0' ||
+		input[0] > '9')
 	{
 		std::cout << "Invalid input. Enter a single number from the menu.\n";
 		return false;
@@ -574,6 +499,7 @@ bool Traveler::GetMenuSelection(const std::string& prompt,
 	{
 		std::cout << "Invalid selection. Select " << minSelection
 			<< maxSelection << ".\n";
+		return false;
 	}
 	//When input is valid
 	return true;

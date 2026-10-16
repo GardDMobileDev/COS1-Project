@@ -1,17 +1,12 @@
 #include "Player.h"
 #include <iostream>
 #include "GameUI.h"
-
-
-/*
-Player Constructor : stats for new game
- - This class defines whats actually happening in Player.h
- - Player:: - belongs to Player.h class 
- - data in constructor give the beginning state of the object
- - Getters get the data from object
-
-
-*/
+//==================================================
+//   PLAYER CONSTRUCTOR
+//
+//  Initializes the players default name, health,
+// food, water, supplies and morale
+//==================================================
 Player::Player()
 {
 	name = "Traveler"; //DEFAULT
@@ -22,24 +17,24 @@ Player::Player()
 	morale = 75;
 }
 
-/*
-Set Players name
-  - const : read playerName but dont change
-  - & : referencing name but not creating a copy
-
-  Progress with research: the idea is the class holds data that can be 
-  used to create multiple objects. As an example name is the private variable
-  I am using that I dont want to be accessed throughout the program. So when I 
-  use my setter method, users can create a name, that can be read and update name var.
-  Each player will have its own copy of name. The name will be a reference of playerName.
-*/
-
+//==================================================
+//   SET PLAYER NAME
+//
+// Updates the players name
+//==================================================
 void Player::SetName(const std::string& playerName) 
 {
 	name = playerName;
 
 }
 
+//==================================================
+//   GET PLAYERS
+//   
+//
+// Updates current 
+// NAME, HEALTH, FOOD,WATER, SUPPLIES AND MORALE
+//==================================================
 std::string Player::GetName() const { return name; }
 
 int Player::GetHealth()const { return health; }
@@ -52,11 +47,14 @@ int Player::GetSupplies() const { return supplies; }
 
 int Player::GetMorale() const { return morale; }
 
-//Display players stats
+
+//==================================================
+//   DISPLAYS PLAYER STATS
+//
+// Displays the players name and current stats
+//==================================================
 void Player::DisplayStats() const 
-{
-	DisplayHeader("PLAYER STATS");
-	
+{	
 	std::cout << "Traveler: " << name <<std::endl;
 	std::cout << "Health: " << health << std::endl;
 	std::cout << "Food: " << food << std::endl;
@@ -65,15 +63,11 @@ void Player::DisplayStats() const
 	std::cout << "Morale: " << morale << std::endl;
 }
 
-//Week 2 Updates: Declarations new methods
-
-//==============================
-//  WEEK 3 UPDATES(start here)
-// updating rules for health limits
-// update when food/water run out
-// Health/Moral capped at 200
-// And no resource can fall below 0
-//==============================
+//==================================================
+//   CHANGE PLAYER HEALTH, FOOD AND WATER, MORALE 
+//
+// Adjusts health while keeping it between 0 && 100
+//==================================================
 void Player::ChangeHealth(int consumption)
 {
 
@@ -123,18 +117,6 @@ void Player::ChangeWater(int consumption)
 
 }
 
-void Player::ChangeSupplies(int consumption)
-{
-
-	supplies += consumption;
-
-	//Cant go below 0 
-	if (supplies < 0)
-	{
-		supplies = 0;
-	}
-}
-
 void Player::ChangeMorale(int consumption)
 {
 	morale += consumption;
@@ -152,8 +134,29 @@ void Player::ChangeMorale(int consumption)
 }
 
 //==================================================
-// RESET PLAYER STATS
-// Restores starting values for a new journey
+//   CHANGE PLAYER SUPPLIES
+//
+// Adjusts supplies while preventing negative values
+//==================================================
+void Player::ChangeSupplies(int consumption)
+{
+
+	supplies += consumption;
+
+	//Cant go below 0 
+	if (supplies < 0)
+	{
+		supplies = 0;
+	}
+}
+
+
+
+//==================================================
+//  RESET PLAYER STATS
+// 
+// Restores the players default name and starting 
+// stats for a new journey
 //==================================================
 void Player::ResetStats() 
 {

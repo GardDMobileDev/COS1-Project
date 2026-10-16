@@ -6,93 +6,164 @@
 #include "Inventory.h"
 #include "Event.h"
 
-//================================
-//  TRAVELER UPDATES 
-// Tracks current day 
-// Controls travel system 
-// Connext Player/Location class
-// Handle Managing Resources
-// Declare travel, stats and location selection
-// 
-// Week 3 Updates:
-// Manage Inventory and item usage
-// Added Inventory inventory;
-// Added DisplayInventory() 
-//================================
+//==================================================
+//   TRAVELER CLASS
+//
+// Manages the player's journey, Genesis locations,
+// travel progression, resources, inventory, and 
+// events
+//==================================================
 class Traveler
 {
 private:
-	//Traveler access to player information 
+//==================================================
+//   PLAYER REFERENCE
+//
+// Provides access to the players information 
+// and stats
+//==================================================
 	Player& player;
 
-	//Reference to curren location object
+//==================================================
+//   CURRENT LOCATION REFERENCE 
+//
+// Provides access to the current location object
+//==================================================
 	Location& currentLocation;
 
-	//Stores the Genesis locations in travel order
+	
+//==================================================
+//  GENESIS LOCATION
+//
+// Stores locations in travel order 
+//==================================================
 	std::vector<Location> locations;
 
-	//Tracks number of days in the journey 
+//==================================================
+//  CURRENT DAY 
+//
+// Tracks the number of days in the journey
+//==================================================
 	int currentDay;
 
-	//Is the journey active 
+//==================================================
+//  JOURNEY STATUS
+// 
+// Indicates whether the journey is active 
+//==================================================
+
 	bool journeyActive;
 
-	//Stores the players individual inventory items/event management
+//==================================================
+//  INVENTORY 
+// 
+// Manages the items available to the traveler
+//==================================================
 	Inventory inventory;
+
+//==================================================
+//  EVENT 
+// 
+// Manages  events encountered during the journey 
+//==================================================
 	Event event;
 
-	//Validation Helper Method
+
+//==================================================
+//  GET MENU SELECTION 
+// 
+// Validates user input and returns a valid selection 
+// within the specified range
+//==================================================
+
 	bool GetMenuSelection(const std::string& prompt, int minSelection, 
 		int maxSelection, int& selection);
 
 
 public: 
-	//Constructor : Gets Location/Player objects
+//==================================================
+//  TRAVELER CONSTRUCTOR 
+// 
+// Initializes the traveler using references 
+// to the player and current location
+//==================================================
+
 	Traveler(Player& player, Location& currentLocation);
 
 
-	//==================================================
-	//          JOURNEY CONTROLS
-	//==================================================
+//==================================================
+//  START JOURNEY 
+// 
+// Starts the journey and displays its menu
+//==================================================
 
-	//Start Journey Menu 
 	void StartJourney();
 
-	//Will move player to next location 
+//==================================================
+//  TRAVEL NEXT 
+// 
+// advances the journye and displays its ment
+//==================================================
+
 	void TravelNext();
 
-	//End Current Journey 
+//==================================================
+//  END JOURNEY 
+// 
+// Ends the current journey 
+//==================================================
+
 	void EndJourney();
 
-	//Issue Week 3: Need to create a method to "refresh journey, 
-	//new journey started at end of last 
+
+
+//==================================================
+//  RESET JOURNEY 
+// 
+// Resets journey progress 
+//==================================================
 	void ResetJourney();
 
 
-	//==================================================
-	//          DISPLAY METHODS
-	//==================================================
-	//Displays Players current status 
+
+//==================================================
+//  DISPLAY STATS 
+// 
+// Methods for displaying player, location, and 
+// 	   inventory information
+//==================================================
 	void DisplayStats();
 
-	//Display Location
+//==================================================
+//  DISPLAY LOCATION
+// 
+// Displays information about the current location
+//==================================================
 	void DisplayLocation();
 
 
-	//Display Inventory 
+//==================================================
+//  DISPLAY INVENTORY 
+// 
+// Displays the available inventory items
+//==================================================
 	void DisplayInventory();
 
 
+//==================================================
+//  MAKE LOCATION SELECTION
+// 
+// Process the players choice at a location
+//==================================================
 
-	//==================================================
-	//          PLAYER CHOICES
-	//==================================================
-
-	//Hanlds a selection at Genesis Location 
 	void MakeLocationSelection();
 
+//==================================================
+//  USE INVENTORU ITEM
+// 
+// Allows the player to use an inventory item
+//==================================================
 	
-	//Allows player to use an inventory item
 	void UseInventoryItem();
 	
 };

@@ -9,42 +9,28 @@
 #include "Game.h"
 #include "Inventory.h"
 
-/*
-FUNCTION DECLARATIONS Week 1
-  - Functions to start The Bible Trail 
+//==================================================
+//   MAIN FUNCTION GAME 
+//
+//   Creates the game object and starts Bible Trail.
+//==================================================
 
-        - GetMenuChoice : menu choice from player
-        - DisplayMainMenu : displays menu
-        - DisplayInstructions : displays game instructions
-        - StartJourney : Starts/controls journey of Player 
-
-* WEEK 2 CODE MOVED INTO GAME CONTROLLER/UPDATED AS NEEDED
-  The main:
-    - This will be the control flow. This creates Player/Traveler objects.
-    - This will store location in Genesis into a vector (REQUIREMENT)
-    - This will use input validation check for user entry
-    - The app should Display a menu for the player to start, view instructions
-    of the game or exit.
-
-   Program Runs:
-       - Asks for name
-       - Provides Options to
-           - View Status
-           - View Travelers
-           - View Locations
-           - Continue on Journey
-        This will now only handle the start of Bible Trail
-
-* Week 3 Inventory & Events 
-    - Ultimate goal is to add more functionality to identify types of items and consumptions
-    - Create Events that change the state of the game and consumption of supplies
-*/
 int main()
 {
-    //Create Bible Trail and connect the objects
+    
+    //==================================================
+    //  INITIALIZE
+    //
+    //   Creates the game object and starts Bible Trail.
+    //==================================================
     Game game;
 
-    //Start the Genesis Main Menu
+   
+    //==================================================
+    //  START GAME 
+    //
+    //   launches the main menu and game flow
+    //==================================================
     game.StartGame();
 
     //Return 0: Program ended as normal
