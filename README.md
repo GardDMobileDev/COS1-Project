@@ -64,6 +64,28 @@ For Week 3 Upcoming Goals, I plan to further develop my existing menus and test.
 
 
 ### Week 3
+STAND UP RESPONSE(original post) 
+
+This week, I continued working on refactoring to update consistent comments, removed unnecessary comments, or repeats. I also spent a lot of time improving my game. I focused on balancing the gameplay, improving the inventory system, and updating events so that player choices have a greater impact on the journey. I also reviewed the travel mechanics, starting player stats, and game ending conditions to make the game more challenging and engaging. 
+
+I updated the inventory system so that items such as bread, water containers, and aloe can be used to restore resources when needed. I also made changes to ensure items are only consumed when appropriate. For example, aloe should not be consumed when the player's health is already at 60 These changes help prevent players from wasting inventory items and encourage them to think carefully about when to use their supplies. Another important change was lowering the player's starting stats to make winning the game more challenging. The player now starts with the following stats:
+* Health: 60
+* Food: 60
+* Water: 60
+* Supplies: 50
+* Morale: 75
+
+Prior stats for health, food and water were at 100.
+
+Previously, players could reach Egypt without using any inventory items because they started with enough resources to complete the journey. By lowering health, food, and water to 60, players must make more thoughtful decisions about when to use supplies, search for resources, rest, or push forward. My goal is to make inventory management an essential part of the gameplay rather than an optional feature. I also reviewed the event choices and resource management mechanics, including food and water consumption during travel, starvation and dehydration penalties, and the conditions for winning or losing. Additionally, I am working on making the starting instructions clearer so players understand what supplies they have and how to use their inventory.
+
+One of my biggest challenges has been balancing the game. During testing, I realized that players could reach Egypt and win without using any inventory items because their resources remained high enough throughout the journey. I also found that searching for supplies made it too easy to recover resources and that travel loss could be deducted twice in certain situations. I addressed this by updating player stats. 
+
+Having my family test the game has helped me identify issues that I might not have noticed while working on the code myself. Their testing previously helped me discover that the game did not reset properly between players, which led me to implement my ResetJourney() method. 
+
+Finally, I want to improve my debugging skills by spending more time understanding why an issue occurs instead of simply finding another way to make the code work. My plans for week 4 will be to complete, test, and be sure my game is fully playable from beginning to end. I plan to add a SaveSystem that allows players to save and load their progress using file I/O. I will also complete the remaining Genesis locations and events, finalize the player instructions, and improve error handling to ensure the game responds appropriately to invalid input and unexpected situations
+
+
 
 Stay tuned, this stand up is coming soon...
 

@@ -10,9 +10,9 @@
 Player::Player()
 {
 	name = "Traveler"; //DEFAULT
-	health = 100;
-	food = 100;
-	water = 100;
+	health = 60;
+	food = 60;
+	water = 60;
 	supplies = 50;
 	morale = 75;
 }
@@ -148,6 +148,10 @@ void Player::ChangeSupplies(int consumption)
 	{
 		supplies = 0;
 	}
+	else if (supplies > 100)
+	{
+		supplies = 100;
+	}
 }
 
 
@@ -161,9 +165,9 @@ void Player::ChangeSupplies(int consumption)
 void Player::ResetStats() 
 {
 	name = "Traveler";
-	health = 100;
-	food = 100;
-	water = 100;
+	health = 60;
+	food = 60;
+	water = 60;
 	supplies = 50;
 	morale = 75;
 

@@ -38,11 +38,11 @@ void Event::SetEvent(const std::string& name, const std::string& description)
 }
 
 
-//==================================================
+//=================================================
 //   DISPLAY EVENT
 // 
 // Displays the event name and description
-//==================================================
+//=================================================
 void Event::DisplayEvent() const 
 {
 	DisplayDivider();
@@ -52,12 +52,12 @@ void Event::DisplayEvent() const
 
 }
 
-//==================================================
+//=================================================
 //   START EVENT
 // 
 // Displays choices, validates input, and applies
 // the consequences of the players selection
-//==================================================
+//=================================================
 void Event::StartEvent(Player& player, const Location& location) 
 {
 	int selection = 0;
@@ -70,15 +70,22 @@ void Event::StartEvent(Player& player, const Location& location)
 
 	//Display the available player choices 
 	std::cout << "What would you like to do?" << std::endl;
-	std::cout << "1. Rest and recover" << std::endl;
-	std::cout << "2. Search for supplies" << std::endl;
-	std::cout << "3. Continue traveling" << std::endl;
+	std::cout << "1. Rest and recover(restore 10 health)" << std::endl;
+	std::cout << "2. Search for supplies(costs 5 supplies)" << std::endl;
+	std::cout << "3. Continue traveling(lose 5 health, gain 5 morale)" << std::endl;
 
 	//Validate the players input 
 	while (true)
 	{
 		std::cout << "\nEnter your choice: ";
-		std::getline(std::cin, input);
+
+		if (!std::getline(std::cin, input))
+		{
+			std::cout << "Input ended. Event cancelled." << std::endl;
+			return;
+
+		}
+		
 
 		try
 		{
@@ -122,25 +129,34 @@ void Event::StartEvent(Player& player, const Location& location)
 	switch (selection)
 	{
 	case 1: 
-		//Resting restores the groups health 
+          //Restores health but consumes food/water
 		player.ChangeHealth(10);
-		std::cout << "\nYour group rested. Health increased by 10\n";
+		player.ChangeFood(-10);
+		player.ChangeWater(-10);
+
+		std::cout << "\nYour group rested and recovered 10 health\n";
+		std::cout << "Food and water each decreased by 10\n";
 		break;
 
 	case 2: 
-		//If the group searches the supplies will increase 
+		 //Search gains supplies but costs food/health 
 		player.ChangeSupplies(10);
+		player.ChangeFood(-5);
+		player.ChangeHealth(-5);
 
-		std::cout << "\nYour group found supplies. Supplies increased by 10\n";
+		std::cout << "Your group found 10 supplies!\n";
+		std::cout << "Searching cost 5 food and 5 health.\n";
 		break;
 
 	case 3: 
-		//Traveling consumes food and water 
+		
+		//Continuing travel with addtional resources losses
+		player.ChangeHealth(-15);
 		player.ChangeFood(-5);
 		player.ChangeWater(-5);
 
-		std::cout << "\nYour group continues traveling\n";
-		std::cout << "Food and water each decreased by 5\n";
+		std::cout << "\nYour group has continued through harsh conditions.\n";
+		std::cout << "\nFood and water both decreased by 5.\n";
 		break;
 
 	default:
@@ -149,9 +165,9 @@ void Event::StartEvent(Player& player, const Location& location)
 	}
 
 
-//==================================================
+//=================================================
 //   DISPLAY THE PLAYERS UPDATED RESOURCES
-//==================================================
+//=================================================
 DisplayDivider();
 std::cout << "             CURRENT RESOURCES\n";
 DisplayDivider();
@@ -161,5 +177,7 @@ std::cout << "Health:     " << player.GetHealth() << "\n";
 std::cout << "Food:       " << player.GetFood() << "\n";
 std::cout << "Water:      " << player.GetWater() << "\n";
 std::cout << "Supplies:   " << player.GetSupplies() << "\n";
+std::cout << "Morale:   " << player.GetMorale() << "\n";
+
 
 }

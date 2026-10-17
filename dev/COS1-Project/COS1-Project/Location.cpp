@@ -21,11 +21,8 @@ Location::Location()
 //  Initializes a location with a specified name
 // and description
 //==================================================
-Location::Location(const std::string& locationName, const std::string& locationDescription) 
-{
-	name = locationName;
-	description = locationDescription;
-}
+Location::Location(const std::string& locationName, const std::string& locationDescription) : name(locationName),
+	description (locationDescription){}
 
 //==================================================
 //  GET LOCATION NAME/DESCRIPTIONS
