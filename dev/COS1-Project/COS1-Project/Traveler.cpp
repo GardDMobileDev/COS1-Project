@@ -68,6 +68,8 @@ void Traveler::StartJourney()
 			continue;
 		}
 
+		DisplayDivider();
+
 		switch (selection)
 		{
 
@@ -130,45 +132,50 @@ void Traveler::TravelNext()
 	player.ChangeFood(-5);
 	player.ChangeWater(-5);
 
-	std::cout << "You traveled for one day.\n";
-	std::cout << "Food decreased by 5.\n";
-	std::cout << "Water decreased by 5.\n";
+	//Every day of travel costs health 
+	player.ChangeHealth(-10);
 
+	std::cout << "You traveled for one day.\n\n";
+	std::cout << "Food decreased by 5.\n";
+	std::cout << "Water decreased by 5.\n\n";
+	std::cout << "You all are exhausted. You lost 10 health.\n\n";
 
 	//Update: apply health damage if food runs out
 	if (player.GetFood() == 0)
 	{
-		player.ChangeHealth(-15);
-		std::cout << "Your group is starving! You lost 15 health\n";
+		player.ChangeHealth(-20);
+		std::cout << "Your group is starving! You lost 20 health\n";
 	}
 	else if (player.GetFood() <= 20)
 	{
-		player.ChangeHealth(-5);
-		std::cout << "Famine! You lost 5 health\n";
+		player.ChangeHealth(-10);
+		std::cout << "Famine! You lost 10 health\n";
 
 	}
 
 	//Update: apply health damage if food runs out
 	if (player.GetWater() == 0)
 	{
-		player.ChangeHealth(-20);
-		std::cout << "Your group is dehydrated! You lost 20 health\n";
+		player.ChangeHealth(-25);
+		std::cout << "Your group is dehydrated! You lost 25 health\n";
 	}
 	else if (player.GetWater() <= 20)
 	{
-		player.ChangeHealth(-5);
-		std::cout << "Warning! Your group is facing dehydration. You lost 5 health\n";
+		player.ChangeHealth(-10);
+		std::cout << "Warning! Your group is facing dehydration. You lost 10 health\n";
 
 	}
 
 	//Display updated health 
-	std::cout << "Current health: " << player.GetHealth() << "\n";
+	std::cout << "\nCurrent health: " << player.GetHealth() << "\n\n";
 
 	//Checks for defeat BEFORE moving to location
 	if (player.GetHealth() <= 0)
 	{
 		DisplayHeader("GAME OVER");
-		std::cout << "Your group could not continue the journey.\n";
+		std::cout << "YOU LOST! God is still with you but you have no health.\n";
+		std::cout << "Put your trust in God and play again. He has given you what you need.\n";
+
 
 		journeyActive = false;
 		return;
@@ -193,7 +200,7 @@ void Traveler::TravelNext()
 		return;
 	}
 
-	if (currentLocation.GetName() == "Noah's ark")
+	if (currentLocation.GetName() == "Noah's Ark")
 	{
 		event.SetEvent(
 			"Preparing for the flood",
@@ -209,7 +216,7 @@ void Traveler::TravelNext()
 			"You must decide how to use your resources."
 		);
 	}
-	else if (currentLocation.GetName() == "abraham's Journey")
+	else if (currentLocation.GetName() == "Abraham's Journey")
 	{
 		event.SetEvent(
 			"Abrahma's Journey",
@@ -345,6 +352,7 @@ void Traveler::UseInventoryItem()
 		if (!inventory.RemoveItem("Water container", 1))
 		{
 			std::cout << "Unable to use the water container.\n";
+			return;
 
 		}
 		
@@ -364,44 +372,47 @@ void Traveler::UseInventoryItem()
 
 		}
 
-		//Avoid consuming healing items at full health
+		//Avoids using healing items at full health
 		if (player.GetHealth() >= 100)
 		{
-			std::cout << "Your health is already at it's max.\n";
-			std::cout << "Save your aloe for when you need it.\n";
+			std::cout << "Your health is already at its max.\n";
+			std::cout << "Save your aloe for when you need it\n";
 			return;
 		}
 
 		if (!inventory.RemoveItem("Aloe for healing", 1))
 		{
-			std::cout << "Unable to use aloe for healing.\n";
-
+			std::cout << "Unable to use aloe for healing.";
+			return;
 		}
 
 		player.ChangeHealth(20);
 
-		std::cout << "You used aloe for healing\n";
-		std::cout << "Health increased by 20, up to a maximum of 100.\n";
+		std::cout << "You used aloe for healing.\n";
+		std::cout << "Health increased by 20, up to a max of 100.\n";
 
+		//Display updated stats 
+		std::cout << "\nUpdated Resources\n";
+		std::cout << "Health: " << player.GetHealth() << "\n";
+		std::cout << "Food: " << player.GetFood() << "\n";
+		std::cout << "Water: " << player.GetWater() << "\n";
+		std::cout << "Supplies: " << player.GetSupplies() << "\n";
+		std::cout << "Morale: " << player.GetMorale() << "\n";
+
+		//Check defeat conditions after item usage
+		if (player.GetHealth() <= 0 ||
+			player.GetFood() <= 0 ||
+			player.GetWater() <= 0)
+		{
+			DisplayHeader("GAME OVER");
+			std::cout << "Your journey has come to an end\n";
+
+			journeyActive = false;
+
+		}
 	}
 
-	//Display updated stats 
-	std::cout << "\nUpdated Resources\n";
-	std::cout << "Health: " << player.GetHealth() << "\n";
-	std::cout << "Food: " << player.GetFood() << "\n";
-	std::cout << "Water: " << player.GetWater() << "\n";
-
-	//Check defeat conditions after item usage
-	if (player.GetHealth() <= 0 ||
-		player.GetFood() <= 0 ||
-		player.GetWater() <= 0)
-	{
-		DisplayHeader("GAME OVER");
-		std::cout << "Your journey has come to an end\n";
-
-		journeyActive = false;
-
-	}
+	
 }
 
 
@@ -493,10 +504,6 @@ void Traveler::MakeLocationSelection()
 	std::cout << "Water: " << player.GetWater() << "\n";
 	std::cout << "Supplies: " << player.GetSupplies() << "\n";
 	std::cout << "Morale: " << player.GetMorale() << "\n";
-
-
-
-
 
 }
 

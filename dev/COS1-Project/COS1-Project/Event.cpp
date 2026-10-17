@@ -151,10 +151,11 @@ void Event::StartEvent(Player& player, const Location& location)
 	case 3: 
 		
 		//Continuing travel with addtional resources losses
+		player.ChangeHealth(-15);
 		player.ChangeFood(-5);
 		player.ChangeWater(-5);
 
-		std::cout << "\nYour group has experiences difficulties but moving forward.\n";
+		std::cout << "\nYour group has continued through harsh conditions.\n";
 		std::cout << "\nFood and water both decreased by 5.\n";
 		break;
 
