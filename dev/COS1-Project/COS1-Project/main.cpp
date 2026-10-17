@@ -12,7 +12,7 @@
 //==================================================
 //   MAIN FUNCTION GAME 
 //
-//   Creates the game object and starts Bible Trail.
+//   Creates the game object and starts Bible Trail
 //==================================================
 
 int main()
@@ -21,7 +21,7 @@ int main()
     //==================================================
     //  INITIALIZE
     //
-    //   Creates the game object and starts Bible Trail.
+    //   Creates the game object and starts Bible Trail
     //==================================================
     Game game;
 
@@ -29,11 +29,11 @@ int main()
     //==================================================
     //  START GAME 
     //
-    //   launches the main menu and game flow
+    //  Launches the main menu and game flow
+    //  Return 0: Program ended as normal
     //==================================================
     game.StartGame();
 
-    //Return 0: Program ended as normal
     return 0;
 
 }

@@ -38,11 +38,11 @@ void Event::SetEvent(const std::string& name, const std::string& description)
 }
 
 
-//==================================================
+//=================================================
 //   DISPLAY EVENT
 // 
 // Displays the event name and description
-//==================================================
+//=================================================
 void Event::DisplayEvent() const 
 {
 	DisplayDivider();
@@ -52,12 +52,12 @@ void Event::DisplayEvent() const
 
 }
 
-//==================================================
+//=================================================
 //   START EVENT
 // 
 // Displays choices, validates input, and applies
 // the consequences of the players selection
-//==================================================
+//=================================================
 void Event::StartEvent(Player& player, const Location& location) 
 {
 	int selection = 0;
@@ -149,9 +149,9 @@ void Event::StartEvent(Player& player, const Location& location)
 	}
 
 
-//==================================================
+//=================================================
 //   DISPLAY THE PLAYERS UPDATED RESOURCES
-//==================================================
+//=================================================
 DisplayDivider();
 std::cout << "             CURRENT RESOURCES\n";
 DisplayDivider();

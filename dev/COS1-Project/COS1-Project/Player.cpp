@@ -148,6 +148,10 @@ void Player::ChangeSupplies(int consumption)
 	{
 		supplies = 0;
 	}
+	else if (supplies > 100)
+	{
+		supplies = 100;
+	}
 }
 
 

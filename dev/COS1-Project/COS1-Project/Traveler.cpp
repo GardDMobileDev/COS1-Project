@@ -420,7 +420,7 @@ void Traveler::EndJourney()
 
 	std::getline(std::cin, input);
 
-	if (input == "y" || input == "Y")
+	if (input == "y" || input == "Y" || input == "YES" || input == "yes")
 	{
 		journeyActive = false;
 
@@ -497,7 +497,7 @@ bool Traveler::GetMenuSelection(const std::string& prompt,
 	//Make sure selection is within range
 	if (selection < minSelection || selection > maxSelection)
 	{
-		std::cout << "Invalid selection. Select " << minSelection
+		std::cout << "Invalid selection. Select " << minSelection << " to "
 			<< maxSelection << ".\n";
 		return false;
 	}
