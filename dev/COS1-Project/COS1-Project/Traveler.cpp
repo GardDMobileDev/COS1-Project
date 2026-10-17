@@ -117,7 +117,7 @@ void Traveler::TravelNext()
 	}
 
 	//Check if final location was reached 
-	if (currentIndex == static_cast<int>(locations.size()) - 1)
+	if (currentLocation.GetName() == "Egypt")
 	{
 		DisplayHeader("JOURNEY COMPLETE");
 
@@ -133,6 +133,21 @@ void Traveler::TravelNext()
 
 	player.ChangeFood(-5);
 	player.ChangeWater(-5);
+
+	//Update: apply health damage if food runs out
+	if (player.GetFood() == 0)
+	{
+		player.ChangeHealth(-10);
+		std::cout << "Your group is starving! You lost 10 health\n";
+	}
+
+	//Update: apply health damage if food runs out
+	if (player.GetWater() == 0)
+	{
+		player.ChangeHealth(-10);
+		std::cout << "Your group is thirsty! You lost 10 health\n";
+	}
+
 
 	std::cout << "You traveled for one day.\n";
 
@@ -178,7 +193,7 @@ void Traveler::TravelNext()
 	}
 	else if (currentLocation.GetName() == "Egypt")
 	{
-		event.SetEvent("Arrival in Egypt ", "Your group has reached Egpty, your group "
+		event.SetEvent("Arrival in Egypt ", "Your group has reached Egypt, your group "
 		" is suffering from famine.");
 	}
 	else
