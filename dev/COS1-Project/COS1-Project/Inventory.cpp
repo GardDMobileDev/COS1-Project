@@ -117,7 +117,7 @@ bool Inventory::HasItem(const std::string& itemName, int quantity) const
 //============================================
 // DISPLAY INVENTORY 
 // 
-// Shoes all items and quantities 
+// Shows all items and quantities 
 //=============================================
 void Inventory::DisplayInventory() const
 {
