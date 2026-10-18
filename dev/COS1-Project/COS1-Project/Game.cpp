@@ -198,6 +198,16 @@ void Game::StartJourney()
 
 }
 
+//==================================================
+//  SAVE THE CURRENT JOURNEY 
+// 
+// Saves current player and journey data
+//==================================================
+void Game::SaveCurrentJourney() 
+{
+  saveSystem.SaveGame("genesis_save.txt", player, traveler);
+}
+
 
 //==================================================
 //   DISPLAYS MAIN MENU
@@ -205,28 +215,29 @@ void Game::StartJourney()
 // Displays the main menu and processes the 
 // players selection
 //==================================================
-void Game::DisplayMainMenu() 
+void Game::DisplayMainMenu()
 {
-	//Store user input 
-	std::string input;
+    //Store user input 
+    std::string input;
 
-	//Store the converted menu selection
-	int selection;
+    //Store the converted menu selection
+    int selection;
 
-	DisplayHeader("BIBLE TRAIL: BOOK OF GENESIS");
-	std::cout << "               An Interactive Journey Through Genesis\n";
+    DisplayHeader("BIBLE TRAIL: BOOK OF GENESIS");
+    std::cout << "               An Interactive Journey Through Genesis\n";
     DisplayDivider();
     std::cout << "\n";
 
-	std::cout << "1. Start A New Journey\n";
-	std::cout << "2. Instructions\n";
-	std::cout << "3. Exit\n";
-	std::cout << "\n";
+    std::cout << "1. Start A New Journey\n";
+    std::cout << "2. Load Journey\n";
+    std::cout << "3. Load Journey\n";
+    std::cout << "4. Exit\n";
+    std::cout << "\n";
 
-	/*
-	 Required update per instruction : getline/try catch
-	*/
-	std::getline(std::cin, input);
+    /*
+     Required update per instruction : getline/try catch
+    */
+    std::getline(std::cin, input);
 
     //Check for blank input 
     if (input.empty())
@@ -242,7 +253,7 @@ void Game::DisplayMainMenu()
         selection = std::stoi(input);
 
         //Validation: number in range?
-        if (selection < 1 || selection > 3)
+        if (selection < 1 || selection > 4)
         {
             std::cout << "Invalid selection\n";
             std::cout << "Please select 1, 2, or 3 from the menu.\n";
@@ -255,9 +266,22 @@ void Game::DisplayMainMenu()
         }
         else if (selection == 2)
         {
+            if ((saveSystem.LoadGame("genesis_save.txt", player, traveler)))
+            {
+                std::cout << "\nWelcome back, " << player.GetName() << "!\n";
+                traveler.StartJourney();
+            }
+            else
+            {
+                std::cout << "Unable to load a saved journey.\n";
+
+            }
+        }
+         else if (selection == 3)
+        {
             DisplayInstructions();
         }
-        else if (selection == 3)
+        else if (selection == 4)
         {
             ExitGame();
         }

@@ -99,6 +99,7 @@ public:
 
 	void StartJourney();
 
+
 //==================================================
 //  TRAVEL NEXT 
 // 
@@ -143,6 +144,15 @@ public:
 	int GetCurrentDay() const;
 	std::string GetCurrentLocation() const;
 	const Inventory& GetInventory() const;
+
+
+//==================================================
+//  LOAD SAVED INVENTORY
+// 
+// Restores inventory from a saved game
+//==================================================
+void LoadSavedInventory(const std::vector<std::string>&
+	savedNames, const std::vector<int>& savedQuantities);
 
 
 //==================================================

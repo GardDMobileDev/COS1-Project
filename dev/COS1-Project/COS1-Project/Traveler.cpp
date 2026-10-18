@@ -660,3 +660,14 @@ bool Traveler::GetMenuSelection(const std::string& prompt,
 int Traveler::GetCurrentDay() const { return currentDay; }
 std::string Traveler::GetCurrentLocation() const { return currentLocation.GetName(); }
 const Inventory& Traveler::GetInventory() const { return inventory; }
+
+//==================================================
+//  LOAD SAVED INVENTORY
+// 
+// Restores inventory from a saved game
+//==================================================
+void Traveler::LoadSavedInventory(const std::vector<std::string>&
+	savedNames, const std::vector<int>& savedQuantities) 
+{
+	inventory.LoadInventory(savedNames, savedQuantities);
+}

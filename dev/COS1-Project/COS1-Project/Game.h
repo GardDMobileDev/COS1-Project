@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Traveler.h"
 #include "Location.h"
+#include "SaveSystem.h"
 
 
 //==================================================
@@ -37,6 +38,12 @@ class Game
 	//==================================================
 	  Traveler traveler;
 
+	//==================================================
+	//  SAVE SYSTEM
+	// 
+	// Gives access to saving and loading functions
+	//==================================================
+	  SaveSystem  saveSystem;
 
 	//==================================================
 	// RUNNING STATE 
@@ -83,6 +90,11 @@ class Game
 	// Initalizes and begins a new journey 
 	//================================================== 
 	  void StartJourney();
+
+	//==================================================
+	//  SAVE THE CURRENT JOURNEY 
+	//==================================================
+	void SaveCurrentJourney();
 
 	//==================================================
 	// EXIT GAME 

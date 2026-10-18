@@ -34,14 +34,14 @@ public:
 	//===============================================
 	Inventory();
 
-	//==============================================
+	//===============================================
 	// ADD ITEM
 	// 
 	// Add or increase item or its quantity
 	//===============================================
 	void AddItem(const std::string& itemName, int quantity);
 
-	//==============================================
+	//===============================================
 	// REMOVE ITEM
 	// 
 	// Remove a specific quantity of an item
@@ -53,7 +53,7 @@ public:
 	// HAS ITEM (check)
 	// 
 	// Check if item has enough quantity
-	//===============================================
+	//==============================================
 	bool HasItem(const std::string& itemName, int quantity = 1) const;
 
 
@@ -61,7 +61,7 @@ public:
 	//  DISPLAY INVENTORY
 	// 
 	// Display all inventory Items
-	//===============================================
+	//==============================================
 	void DisplayInventory() const;
 
 	
@@ -76,17 +76,26 @@ public:
 	//  GET ITEM COUNT
 	// 
 	// Get the total number of distinct item types 
-	//===============================================
+	//==============================================
 	int GetItemCount() const;
 
-	//==============================================
+
+	//===============================================
+	// GET ITEM NAME
+	//
+	// Get the name of an inventory item by index
+	//===============================================
+	std::string GetItemName(int index) const;
+
+
+	//===============================================
 	//  RESET JOURNEYS
 	// 
 	// Get the total number of distinct item types 
 	//===============================================
 	void ResetInventory();
 
-	//==============================================
+	//===============================================
 	// LOAD INVENTORY
 	// 
 	// restores inventory from saved game data 

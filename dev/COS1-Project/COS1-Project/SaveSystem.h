@@ -23,8 +23,4 @@ public:
 	bool LoadGame(const std::string& fileName,
 		Player& player, Traveler& traveler);
 
-
-
-
-
 };

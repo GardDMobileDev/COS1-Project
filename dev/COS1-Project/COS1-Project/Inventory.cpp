@@ -220,3 +220,19 @@ for (int i = 0; i < savedNames.size(); ++i)
 }
 
 }
+
+//===============================================
+// GET ITEM NAME
+//
+// Get the name of an inventory item by index
+//===============================================
+std::string Inventory::GetItemName(int index) const 
+{
+	if (index <0 || index >= static_cast<int>(itemNames.size()))
+	{
+		return "";
+	}
+
+	return itemNames[index];
+
+}
