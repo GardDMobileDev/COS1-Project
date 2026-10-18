@@ -124,6 +124,14 @@ public:
 //==================================================
 	void ResetJourney();
 
+//==================================================
+//  LOAD JOURNEY 
+// 
+// Restores journey progress from a saved game
+//==================================================
+	bool LoadJourney(int savedDay, const std::string&
+	savedLocation);
+
 
 
 //==================================================

@@ -555,6 +555,48 @@ void Traveler::ResetJourney()
 }
 
 //==================================================
+//  LOAD JOURNEY 
+// 
+// Checks for valid saved data
+// Searched locations for saved name
+// Restores teh location/day when match found 
+// returns false if saved location doesnt exist
+//==================================================
+bool Traveler::LoadJourney(int savedDay, const std::string&
+	savedLocation) 
+{
+
+	//==================================================
+	//  VALIDATE SVED DAY
+	//==================================================
+	if (savedDay < 1)
+	{
+		return false;
+	}
+
+	//==================================================
+	//  FIND SAVED LOCATION
+	//==================================================
+	for (const Location& location : locations)
+	{
+		if (location.GetName() == savedLocation)
+		{
+			currentLocation = location;
+			currentDay = savedDay;
+			journeyActive = false;
+
+			return true;
+		}
+	}
+
+	//==================================================
+	//  SAVED LOCATION WAS NOT FOUND
+	//==================================================
+	return false;
+}
+
+
+//==================================================
 // GET MENU SELECTION 
 // 
 // Validates menu input and returns whether the

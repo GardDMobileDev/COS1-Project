@@ -26,29 +26,74 @@ private:
 
 public: 
 
-	//Constructor to initialize starting inventory
+	
+	//==============================================
+	// CONSTRUCTOR
+	// 
+	// Constructor to initialize starting inventory
+	//===============================================
 	Inventory();
 
-	//Add or increase item or its quantity
+	//==============================================
+	// ADD ITEM
+	// 
+	// Add or increase item or its quantity
+	//===============================================
 	void AddItem(const std::string& itemName, int quantity);
 
-	//Remove a specific quantity of an item
+	//==============================================
+	// REMOVE ITEM
+	// 
+	// Remove a specific quantity of an item
+	//===============================================
 	bool RemoveItem(const std::string& itemName, int quantity);
 
-	//Check if item has enough quantity
+	
+	//==============================================
+	// HAS ITEM (check)
+	// 
+	// Check if item has enough quantity
+	//===============================================
 	bool HasItem(const std::string& itemName, int quantity = 1) const;
 
-	//Display all inventory Items
+
+	//==============================================
+	//  DISPLAY INVENTORY
+	// 
+	// Display all inventory Items
+	//===============================================
 	void DisplayInventory() const;
 
-	//Get quantity of an item 
+	
+	//==============================================
+	//  GET ITEM QUANTITY
+	// 
+	// Get quantity of an item 
+	//===============================================
 	int GetItemQuantity(const std::string& itemName) const;
 
-	//Get the total number of distinct item types 
+	//==============================================
+	//  GET ITEM COUNT
+	// 
+	// Get the total number of distinct item types 
+	//===============================================
 	int GetItemCount() const;
 
-	//Reset 
+	//==============================================
+	//  RESET JOURNEYS
+	// 
+	// Get the total number of distinct item types 
+	//===============================================
 	void ResetInventory();
+
+	//==============================================
+	// LOAD INVENTORY
+	// 
+	// restores inventory from saved game data 
+	//===============================================
+	void LoadInventory(const std::vector<std::string>&
+		savedNames, const std::vector<int>& savedQuantities
+	);
 
 };
 
