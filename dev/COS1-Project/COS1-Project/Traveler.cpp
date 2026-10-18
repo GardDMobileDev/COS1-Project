@@ -671,3 +671,14 @@ void Traveler::LoadSavedInventory(const std::vector<std::string>&
 {
 	inventory.LoadInventory(savedNames, savedQuantities);
 }
+
+//==================================================
+//   SAVE CALL BACK
+//
+// This stores the func the Traveler will call 
+// when the player chooses to save 
+//==================================================
+void Traveler::SetSaveCallback(std::function<void()>  callback) 
+{
+	saveCallBack = callback;
+}

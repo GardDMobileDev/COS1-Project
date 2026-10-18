@@ -93,9 +93,9 @@ void Player::ChangeHealth(int consumption)
 	{
 		health = 0;
 	}
-	else if (health > 100)
+	else if (health > 60)
 	{
-		health = 100;
+		health = 60;
 	}
 }
 
@@ -108,9 +108,9 @@ void Player::ChangeFood(int consumption)
 	{
 		food = 0;
 	}
-	else if (food > 100)
+	else if (food > 60)
 	{
-		food = 100;
+		food = 60;
 	}
 
 }
@@ -125,9 +125,9 @@ void Player::ChangeWater(int consumption)
 	{
 		water = 0;
 	}
-	else if (water > 100)
+	else if (water > 60)
 	{
-		water = 100;
+		water = 60;
 	}
 
 }
@@ -141,9 +141,9 @@ void Player::ChangeMorale(int consumption)
 	{
 		morale = 0;
 	}
-	else if (morale > 100)
+	else if (morale > 75)
 	{
-		morale = 100;
+		morale = 75;
 	}
 
 }
@@ -163,9 +163,9 @@ void Player::ChangeSupplies(int consumption)
 	{
 		supplies = 0;
 	}
-	else if (supplies > 100)
+	else if (supplies > 50)
 	{
-		supplies = 100;
+		supplies = 50;
 	}
 }
 

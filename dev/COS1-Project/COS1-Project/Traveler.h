@@ -5,6 +5,7 @@
 #include "Location.h"
 #include "Inventory.h"
 #include "Event.h"
+#include <functional>
 
 //==================================================
 //   TRAVELER CLASS
@@ -79,6 +80,12 @@ private:
 	bool GetMenuSelection(const std::string& prompt, int minSelection, 
 		int maxSelection, int& selection);
 
+//==================================================
+//   SAVE CALL BACK
+//
+//Function used to save the current journey 
+//==================================================
+std::function<void()> saveCallBack;
 
 public: 
 //==================================================
@@ -99,6 +106,12 @@ public:
 
 	void StartJourney();
 
+//==================================================
+//   SAVE CALL BACK
+//
+//Function used to save the current journey 
+//==================================================
+void SetSaveCallback(std::function<void()>  callback);
 
 //==================================================
 //  TRAVEL NEXT 
@@ -115,8 +128,6 @@ public:
 //==================================================
 
 	void EndJourney();
-
-
 
 //==================================================
 //  RESET JOURNEY 

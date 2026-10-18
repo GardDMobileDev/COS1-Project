@@ -105,7 +105,7 @@ bool SaveSystem::LoadGame(const std::string& fileName,
 	if (!(file >> savedDay))
 	{
 		std::cout << "Save file is invalis or incomplete.\n";
-		return;
+		return false;
 	}
 
 	file.ignore(10000, '\n');
@@ -113,7 +113,7 @@ bool SaveSystem::LoadGame(const std::string& fileName,
 	if (!std::getline(file, savedLocation))
 	{
 		std::cout << "Save file is invalis or incomplete.\n";
-		return;
+		return false;
 	}
 
 	//==================================================

@@ -133,10 +133,16 @@ int GetMenuChoice(int min, int max)
 // Initializes the player, current location,
 // traveler and game running state 
 //==================================================
-Game::Game() : player(), currentLocation(), 
-traveler(player, currentLocation), isRunning(true)
+Game::Game() : player(), 
+               currentLocation(), 
+               traveler(player, currentLocation), 
+               saveSystem(),
+               isRunning(true)
 {
-	isRunning = true;
+    traveler.SetSaveCallback([this]() 
+    {
+       saveSystem.SaveGame("genesis_save.txt", player, traveler);
+    });
 }
 
 //==================================================
