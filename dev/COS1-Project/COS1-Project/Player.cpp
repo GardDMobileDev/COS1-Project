@@ -29,6 +29,21 @@ void Player::SetName(const std::string& playerName)
 }
 
 //==================================================
+//   LOAD PLAYER STATS
+//
+//  restores player stats from a saved games
+//==================================================
+void Player::LoadStats(int saveHealth, int saveFood,
+	int saveWater, int saveSupplies, int saveMorale) 
+{
+	health = saveHealth;
+	food = saveFood;
+	water = saveWater;
+	supplies = saveSupplies;
+	morale = saveMorale;
+}
+
+//==================================================
 //   GET PLAYERS
 //   
 //

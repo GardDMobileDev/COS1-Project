@@ -60,6 +60,14 @@ private:
 	void SetName(const std::string& playerName);
 
 	//==================================================
+	//   LOAD PLAYER STATS
+	//
+	//  restores player stats from a saved games
+	//==================================================
+	void LoadStats(int saveHealth, int saveFood, 
+		int saveWater, int saveSupplies, int saveMorale);
+
+	//==================================================
 	//   CHANGES PLAYERS
 	//   HEALTH, FOOD, WATER, SUPPLIES AND MORALE
 	//
