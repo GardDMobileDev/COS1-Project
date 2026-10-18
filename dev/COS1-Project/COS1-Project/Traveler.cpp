@@ -647,3 +647,16 @@ bool Traveler::GetMenuSelection(const std::string& prompt,
 	//When input is valid
 	return true;
 }
+
+
+//==================================================
+//  GETS THE CURRENT JOURNEY DAY
+//  GETS THE CURRENT LOCATION
+//  GETS THE CURRENT INVENTORY
+// 
+// 	Allows other function to read journey info
+// 	without accessing private vars
+//==================================================
+int Traveler::GetCurrentDay() const { return currentDay; }
+std::string Traveler::GetCurrentLocation() const { return currentLocation.GetName(); }
+const Inventory& Traveler::GetInventory() const { return inventory; }

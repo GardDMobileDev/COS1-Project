@@ -132,6 +132,17 @@ public:
 	bool LoadJourney(int savedDay, const std::string&
 	savedLocation);
 
+//==================================================
+//  GETS THE CURRENT JOURNEY DAY
+//  GETS THE CURRENT LOCATION
+//  GETS THE CURRENT INVENTORY
+// 
+// 	Allows other function to read journey info
+// 	without accessing private vars
+//==================================================
+	int GetCurrentDay() const;
+	std::string GetCurrentLocation() const;
+	const Inventory& GetInventory() const;
 
 
 //==================================================
