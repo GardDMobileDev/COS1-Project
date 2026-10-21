@@ -17,22 +17,16 @@ Player::Player()
 	morale = 75;
 }
 
-//==================================================
-//   SET PLAYER NAME
-//
-// Updates the players name
-//==================================================
+
+//Updates the players name
 void Player::SetName(const std::string& playerName) 
 {
 	name = playerName;
 
 }
 
-//==================================================
-//   LOAD PLAYER STATS
-//
-//  restores player stats from a saved games
-//==================================================
+
+//Restores player stats from a saved games
 void Player::LoadStats(int saveHealth, int saveFood,
 	int saveWater, int saveSupplies, int saveMorale) 
 {
@@ -43,13 +37,8 @@ void Player::LoadStats(int saveHealth, int saveFood,
 	morale = saveMorale;
 }
 
-//==================================================
-//   GET PLAYERS
-//   
-//
-// Updates current 
-// NAME, HEALTH, FOOD,WATER, SUPPLIES AND MORALE
-//==================================================
+
+// Updates current : NAME, HEALTH, FOOD,WATER, SUPPLIES AND MORALE
 std::string Player::GetName() const { return name; }
 
 int Player::GetHealth()const { return health; }
@@ -63,11 +52,7 @@ int Player::GetSupplies() const { return supplies; }
 int Player::GetMorale() const { return morale; }
 
 
-//==================================================
-//   DISPLAYS PLAYER STATS
-//
 // Displays the players name and current stats
-//==================================================
 void Player::DisplayStats() const 
 {	
 	std::cout << "Traveler: " << name <<std::endl;
@@ -78,11 +63,7 @@ void Player::DisplayStats() const
 	std::cout << "Morale: " << morale << std::endl;
 }
 
-//==================================================
-//   CHANGE PLAYER HEALTH, FOOD AND WATER, MORALE 
-//
-// Adjusts health while keeping it between 0 && 100
-//==================================================
+//   CHANGE PLAYER HEALTH, FOOD AND WATER, MORALE
 void Player::ChangeHealth(int consumption)
 {
 
@@ -148,11 +129,8 @@ void Player::ChangeMorale(int consumption)
 
 }
 
-//==================================================
-//   CHANGE PLAYER SUPPLIES
-//
 // Adjusts supplies while preventing negative values
-//==================================================
+
 void Player::ChangeSupplies(int consumption)
 {
 
@@ -169,14 +147,7 @@ void Player::ChangeSupplies(int consumption)
 	}
 }
 
-
-
-//==================================================
-//  RESET PLAYER STATS
-// 
-// Restores the players default name and starting 
-// stats for a new journey
-//==================================================
+// Restores the players default name and starting stats for a new journey
 void Player::ResetStats() 
 {
 	name = "Traveler";

@@ -14,22 +14,12 @@
 // Player: handles player stats
 //==================================================
 
-
-//==================================================
-//   EVENT CONSTRUCTOR 
-// 
-// Initializes the event default information
-//==================================================
 Event::Event() : eventName("GENESIS EVENT"), eventDescription("Your group faces a challenge")
 {
 
 }
 
-//==================================================
-//   SET EVENT INFORMATION
-// 
-// updates the event name and description
-//==================================================
+//Updates the event name and description
 void Event::SetEvent(const std::string& name, const std::string& description) 
 {
 	eventName = name;
@@ -37,12 +27,7 @@ void Event::SetEvent(const std::string& name, const std::string& description)
 
 }
 
-
-//=================================================
-//   DISPLAY EVENT
-// 
 // Displays the event name and description
-//=================================================
 void Event::DisplayEvent() const 
 {
 	DisplayDivider();
@@ -52,29 +37,20 @@ void Event::DisplayEvent() const
 
 }
 
-//=================================================
-//   START EVENT
-// 
-// Displays choices, validates input, and applies
-// the consequences of the players selection
-//=================================================
+// Displays choices, validates input, and applies the consequences of the players selection
 void Event::StartEvent(Player& player, const Location& location) 
 {
 	int selection = 0;
 	std::string input;
 
-	//Display the current event and location
 	DisplayEvent();
 
 	std::cout << "\nLocation: " << location.GetName() << std::endl;
-
-	//Display the available player choices 
 	std::cout << "What would you like to do?" << std::endl;
 	std::cout << "1. Rest and recover(restore 10 health)" << std::endl;
 	std::cout << "2. Search for supplies(costs 5 supplies)" << std::endl;
 	std::cout << "3. Continue traveling(lose 5 health, gain 5 morale)" << std::endl;
 
-	//Validate the players input 
 	while (true)
 	{
 		std::cout << "\nEnter your choice: ";
