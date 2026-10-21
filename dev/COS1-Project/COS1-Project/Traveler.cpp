@@ -40,8 +40,17 @@ void Traveler::StartJourney()
 
 	while (journeyActive)
 	{
-		int selection = 0;
+		//If event occurs blocks players from performing selection if they fail : Week 3 feedback uodate
+		if (player.GetHealth() <= 0)
+		{
+			DisplayHeader("GAME OVER");
+			std::cout << "Your journey has come to end.\n";
+			journeyActive = false;
+			break;
 
+		}
+
+		int selection = 0;
 		DisplayHeader("YOUR JOURNEY");
 
 		//==================================================
@@ -106,10 +115,16 @@ void Traveler::StartJourney()
 //==================================================
 void Traveler::TravelNext()
 {
+	//Prevents players from bypassing survival conditions by travel next 
+	if (player.GetHealth() <= 0)
+	{
+		std::cout << "\n You cannont travel, you dont have the resources or heakth to move on!";
+		return;
+	}
+
 
 	//Find the current location
 	int currentIndex = -1;
-
 	for (int i = 0; i < locations.size(); ++i)
 	{
 		if (locations[i].GetName() == currentLocation.GetName())
@@ -134,7 +149,6 @@ void Traveler::TravelNext()
 		std::cout << "Your group has reached Egypt!\n";
 		std::cout << "Your journey through Genesis is complete\n";
 		std::cout << "\nYOU WIN!\n";
-
 		journeyActive = false;
 		return;
 	}
@@ -143,8 +157,6 @@ void Traveler::TravelNext()
 
 	player.ChangeFood(-5);
 	player.ChangeWater(-5);
-
-	//Every day of travel costs health 
 	player.ChangeHealth(-10);
 
 	std::cout << "You traveled for one day.\n\n";
@@ -257,11 +269,6 @@ void Traveler::TravelNext()
 
 }
 
-//==================================================
-// DISPLAYS THE PLAYERS STATS
-//
-// Displays the players current stats
-//==================================================
 void Traveler::DisplayStats() 
 {
 	std::cout << "\n";
@@ -272,12 +279,6 @@ void Traveler::DisplayStats()
 	
 }
 
-//==================================================
-//    DISPLAY CURRENT LOCATION 
-// 
-//  Displays the current locations name and 
-// description
-//==================================================
 void Traveler::DisplayLocation() 
 {
 	std::cout << "\n";
@@ -287,12 +288,6 @@ void Traveler::DisplayLocation()
 
 }
 
-//==================================================
-//    DISPLAY INVENTORY
-// 
-// Displays the available inventory items
-// and their quantities
-//==================================================
 void Traveler::DisplayInventory() 
 {
 	inventory.DisplayInventory();
@@ -340,17 +335,16 @@ void Traveler::UseInventoryItem()
 			return;
 		}
 
-		if (!inventory.RemoveItem("Sack of bread", 1))
+		if (player.GetFood() >= 60)
 		{
-			std::cout << "Unable to use a sack of bread.\n";
+			std::cout << "Your group is already completely full! You decide not to waste the flood.\n";
 			return;
-
 		}
-        
-		player.ChangeFood(10);
-		std::cout << "You used a sack of bread.\n";
-		std::cout << "Food increased by 10.\n";
 
+		player.ChangeFood(10);
+		inventory.RemoveItem("Sack of bread", 1);
+		std::cout << "You consumed a Sack of bread. Food restored!";
+	
 	}
 	else if (selection == 2)
 	{ 
@@ -361,23 +355,27 @@ void Traveler::UseInventoryItem()
 			return;
 		}
 
-		if (!inventory.RemoveItem("Water container", 1))
+		if (player.GetWater() >= 60)
 		{
-			std::cout << "Unable to use the water container.\n";
+			std::cout << "Your group is already fully hydrated! Your water container is full\n";
 			return;
-
 		}
 		
 		player.ChangeWater(10);
-
-		std::cout << "You used water container\n";
-		std::cout << "Water increased by 10\n";
+		inventory.RemoveItem("Water Container", 1);
+		std::cout << "You hydrated! Water restored!\n";
 	
 	}
 	else if (selection == 3)
 	{
 		//Aloe for healing 
 		if (!inventory.HasItem("Aloe for healing"))
+		{
+			std::cout << "You do not have any aloe for healing.\n";
+			return;
+		}
+
+		if (player.GetHealth() >= 100)
 		{
 			std::cout << "You do not have any aloe for healing.\n";
 			return;
@@ -388,20 +386,12 @@ void Traveler::UseInventoryItem()
 		if (player.GetHealth() >= 100)
 		{
 			std::cout << "Your health is already at its max.\n";
-			std::cout << "Save your aloe for when you need it\n";
-			return;
-		}
-
-		if (!inventory.RemoveItem("Aloe for healing", 1))
-		{
-			std::cout << "Unable to use aloe for healing.";
 			return;
 		}
 
 		player.ChangeHealth(20);
-
-		std::cout << "You used aloe for healing.\n";
-		std::cout << "Health increased by 20, up to a max of 100.\n";
+		inventory.RemoveItem("Aloe for healing", 1);
+		std::cout << "you used the Aloe. Health restored!\n";
 
 		//Display updated stats 
 		std::cout << "\nUpdated Resources\n";
