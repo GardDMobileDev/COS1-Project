@@ -17,24 +17,28 @@ Player::Player()
 	morale = 75;
 }
 
-//==================================================
-//   SET PLAYER NAME
-//
-// Updates the players name
-//==================================================
+
+//Updates the players name
 void Player::SetName(const std::string& playerName) 
 {
 	name = playerName;
 
 }
 
-//==================================================
-//   GET PLAYERS
-//   
-//
-// Updates current 
-// NAME, HEALTH, FOOD,WATER, SUPPLIES AND MORALE
-//==================================================
+
+//Restores player stats from a saved games
+void Player::LoadStats(int saveHealth, int saveFood,
+	int saveWater, int saveSupplies, int saveMorale) 
+{
+	health = saveHealth;
+	food = saveFood;
+	water = saveWater;
+	supplies = saveSupplies;
+	morale = saveMorale;
+}
+
+
+// Updates current : NAME, HEALTH, FOOD,WATER, SUPPLIES AND MORALE
 std::string Player::GetName() const { return name; }
 
 int Player::GetHealth()const { return health; }
@@ -48,11 +52,7 @@ int Player::GetSupplies() const { return supplies; }
 int Player::GetMorale() const { return morale; }
 
 
-//==================================================
-//   DISPLAYS PLAYER STATS
-//
 // Displays the players name and current stats
-//==================================================
 void Player::DisplayStats() const 
 {	
 	std::cout << "Traveler: " << name <<std::endl;
@@ -63,11 +63,7 @@ void Player::DisplayStats() const
 	std::cout << "Morale: " << morale << std::endl;
 }
 
-//==================================================
-//   CHANGE PLAYER HEALTH, FOOD AND WATER, MORALE 
-//
-// Adjusts health while keeping it between 0 && 100
-//==================================================
+//   CHANGE PLAYER HEALTH, FOOD AND WATER, MORALE
 void Player::ChangeHealth(int consumption)
 {
 
@@ -78,9 +74,9 @@ void Player::ChangeHealth(int consumption)
 	{
 		health = 0;
 	}
-	else if (health > 100)
+	else if (health > 60)
 	{
-		health = 100;
+		health = 60;
 	}
 }
 
@@ -93,9 +89,9 @@ void Player::ChangeFood(int consumption)
 	{
 		food = 0;
 	}
-	else if (food > 100)
+	else if (food > 60)
 	{
-		food = 100;
+		food = 60;
 	}
 
 }
@@ -110,9 +106,9 @@ void Player::ChangeWater(int consumption)
 	{
 		water = 0;
 	}
-	else if (water > 100)
+	else if (water > 60)
 	{
-		water = 100;
+		water = 60;
 	}
 
 }
@@ -126,18 +122,15 @@ void Player::ChangeMorale(int consumption)
 	{
 		morale = 0;
 	}
-	else if (morale > 100)
+	else if (morale > 75)
 	{
-		morale = 100;
+		morale = 75;
 	}
 
 }
 
-//==================================================
-//   CHANGE PLAYER SUPPLIES
-//
 // Adjusts supplies while preventing negative values
-//==================================================
+
 void Player::ChangeSupplies(int consumption)
 {
 
@@ -148,20 +141,13 @@ void Player::ChangeSupplies(int consumption)
 	{
 		supplies = 0;
 	}
-	else if (supplies > 100)
+	else if (supplies > 50)
 	{
-		supplies = 100;
+		supplies = 50;
 	}
 }
 
-
-
-//==================================================
-//  RESET PLAYER STATS
-// 
-// Restores the players default name and starting 
-// stats for a new journey
-//==================================================
+// Restores the players default name and starting stats for a new journey
 void Player::ResetStats() 
 {
 	name = "Traveler";

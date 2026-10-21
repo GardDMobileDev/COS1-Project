@@ -102,7 +102,7 @@ bool Inventory::RemoveItem(const std::string& itemName, int quantity)
 // CHECK AVAILABILITY OF ITEM
 // 
 // Checlks whether an item is available
-//=============================================
+//============================================
 bool Inventory::HasItem(const std::string& itemName, int quantity) const
 {
 	if (quantity <= 0)
@@ -181,5 +181,58 @@ void Inventory::ResetInventory()
 	AddItem("Sack of bread",3);
 	AddItem("Water container", 3);
 	AddItem("Aloe for healing", 1);
+
+}
+
+//==============================================
+// LOAD INVENTORY
+// 
+// restores inventory from saved game data 
+//===============================================
+void Inventory::LoadInventory(const std::vector<std::string>&
+	savedNames, const std::vector<int>& savedQuantities
+) 
+{
+
+//==============================================
+//  CLEAR THE CURRENT JOURNEY
+//===============================================
+itemNames.clear();
+itemQuantity.clear();
+
+//==============================================
+//  MAKE SURE THE SAVED DATA MATCHES
+//===============================================
+if (savedNames.size() != savedQuantities.size())
+{
+	return;
+}
+
+//==============================================
+//  RESTORE EACH SAVED ITEM
+//===============================================
+for (int i = 0; i < savedNames.size(); ++i)
+{
+	if (!savedNames[i].empty() && savedQuantities[i] > 0)
+	{
+		AddItem(savedNames[i], savedQuantities[i]);
+	}
+}
+
+}
+
+//===============================================
+// GET ITEM NAME
+//
+// Get the name of an inventory item by index
+//===============================================
+std::string Inventory::GetItemName(int index) const 
+{
+	if (index <0 || index >= static_cast<int>(itemNames.size()))
+	{
+		return "";
+	}
+
+	return itemNames[index];
 
 }

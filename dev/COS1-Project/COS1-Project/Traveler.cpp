@@ -40,8 +40,17 @@ void Traveler::StartJourney()
 
 	while (journeyActive)
 	{
-		int selection = 0;
+		//If event occurs blocks players from performing selection if they fail : Week 3 feedback uodate
+		if (player.GetHealth() <= 0)
+		{
+			DisplayHeader("GAME OVER");
+			std::cout << "Your journey has come to end.\n";
+			journeyActive = false;
+			break;
 
+		}
+
+		int selection = 0;
 		DisplayHeader("YOUR JOURNEY");
 
 		//==================================================
@@ -56,9 +65,10 @@ void Traveler::StartJourney()
 		std::cout << "4. Make A Location Selection\n"; //update
 		std::cout << "5. View Inventory\n"; 
 		std::cout << "6. Use an Inventory Item\n";
-        std::cout << "7. End Journey \n";
+		std::cout << "7. Save Journey\n";
+        std::cout << "8. End Journey \n";
 
-		if (!GetMenuSelection("\nEnter your selection: ", 1,7, selection))
+		if (!GetMenuSelection("\nEnter your selection: ", 1,8, selection))
 		{
 			if (!journeyActive)
 			{
@@ -79,7 +89,18 @@ void Traveler::StartJourney()
 		case 4:MakeLocationSelection();break;
         case 5:DisplayInventory();break;
         case 6:UseInventoryItem();break;
-		case 7:EndJourney();break;
+		case 7:
+			if (saveCallBack)
+			{
+				saveCallBack();
+			}
+			else
+			{
+				std::cout << "Save system is unavailable.\n";
+			}
+			break;
+
+		case 8:EndJourney();break;
 		default: std::cout << "Invalid selection. Please try again.\n"; break;
 		}
 
@@ -94,10 +115,16 @@ void Traveler::StartJourney()
 //==================================================
 void Traveler::TravelNext()
 {
+	//Prevents players from bypassing survival conditions by travel next 
+	if (player.GetHealth() <= 0)
+	{
+		std::cout << "\n You cannont travel, you dont have the resources or heakth to move on!";
+		return;
+	}
+
 
 	//Find the current location
 	int currentIndex = -1;
-
 	for (int i = 0; i < locations.size(); ++i)
 	{
 		if (locations[i].GetName() == currentLocation.GetName())
@@ -122,7 +149,6 @@ void Traveler::TravelNext()
 		std::cout << "Your group has reached Egypt!\n";
 		std::cout << "Your journey through Genesis is complete\n";
 		std::cout << "\nYOU WIN!\n";
-
 		journeyActive = false;
 		return;
 	}
@@ -131,8 +157,6 @@ void Traveler::TravelNext()
 
 	player.ChangeFood(-5);
 	player.ChangeWater(-5);
-
-	//Every day of travel costs health 
 	player.ChangeHealth(-10);
 
 	std::cout << "You traveled for one day.\n\n";
@@ -245,11 +269,6 @@ void Traveler::TravelNext()
 
 }
 
-//==================================================
-// DISPLAYS THE PLAYERS STATS
-//
-// Displays the players current stats
-//==================================================
 void Traveler::DisplayStats() 
 {
 	std::cout << "\n";
@@ -260,12 +279,6 @@ void Traveler::DisplayStats()
 	
 }
 
-//==================================================
-//    DISPLAY CURRENT LOCATION 
-// 
-//  Displays the current locations name and 
-// description
-//==================================================
 void Traveler::DisplayLocation() 
 {
 	std::cout << "\n";
@@ -275,12 +288,6 @@ void Traveler::DisplayLocation()
 
 }
 
-//==================================================
-//    DISPLAY INVENTORY
-// 
-// Displays the available inventory items
-// and their quantities
-//==================================================
 void Traveler::DisplayInventory() 
 {
 	inventory.DisplayInventory();
@@ -328,17 +335,16 @@ void Traveler::UseInventoryItem()
 			return;
 		}
 
-		if (!inventory.RemoveItem("Sack of bread", 1))
+		if (player.GetFood() >= 60)
 		{
-			std::cout << "Unable to use a sack of bread.\n";
+			std::cout << "Your group is already completely full! You decide not to waste the flood.\n";
 			return;
-
 		}
-        
-		player.ChangeFood(10);
-		std::cout << "You used a sack of bread.\n";
-		std::cout << "Food increased by 10.\n";
 
+		player.ChangeFood(10);
+		inventory.RemoveItem("Sack of bread", 1);
+		std::cout << "You consumed a Sack of bread. Food restored!";
+	
 	}
 	else if (selection == 2)
 	{ 
@@ -349,23 +355,27 @@ void Traveler::UseInventoryItem()
 			return;
 		}
 
-		if (!inventory.RemoveItem("Water container", 1))
+		if (player.GetWater() >= 60)
 		{
-			std::cout << "Unable to use the water container.\n";
+			std::cout << "Your group is already fully hydrated! Your water container is full\n";
 			return;
-
 		}
 		
 		player.ChangeWater(10);
-
-		std::cout << "You used water container\n";
-		std::cout << "Water increased by 10\n";
+		inventory.RemoveItem("Water Container", 1);
+		std::cout << "You hydrated! Water restored!\n";
 	
 	}
 	else if (selection == 3)
 	{
 		//Aloe for healing 
 		if (!inventory.HasItem("Aloe for healing"))
+		{
+			std::cout << "You do not have any aloe for healing.\n";
+			return;
+		}
+
+		if (player.GetHealth() >= 100)
 		{
 			std::cout << "You do not have any aloe for healing.\n";
 			return;
@@ -376,20 +386,12 @@ void Traveler::UseInventoryItem()
 		if (player.GetHealth() >= 100)
 		{
 			std::cout << "Your health is already at its max.\n";
-			std::cout << "Save your aloe for when you need it\n";
-			return;
-		}
-
-		if (!inventory.RemoveItem("Aloe for healing", 1))
-		{
-			std::cout << "Unable to use aloe for healing.";
 			return;
 		}
 
 		player.ChangeHealth(20);
-
-		std::cout << "You used aloe for healing.\n";
-		std::cout << "Health increased by 20, up to a max of 100.\n";
+		inventory.RemoveItem("Aloe for healing", 1);
+		std::cout << "you used the Aloe. Health restored!\n";
 
 		//Display updated stats 
 		std::cout << "\nUpdated Resources\n";
@@ -555,6 +557,48 @@ void Traveler::ResetJourney()
 }
 
 //==================================================
+//  LOAD JOURNEY 
+// 
+// Checks for valid saved data
+// Searched locations for saved name
+// Restores teh location/day when match found 
+// returns false if saved location doesnt exist
+//==================================================
+bool Traveler::LoadJourney(int savedDay, const std::string&
+	savedLocation) 
+{
+
+	//==================================================
+	//  VALIDATE SVED DAY
+	//==================================================
+	if (savedDay < 1)
+	{
+		return false;
+	}
+
+	//==================================================
+	//  FIND SAVED LOCATION
+	//==================================================
+	for (const Location& location : locations)
+	{
+		if (location.GetName() == savedLocation)
+		{
+			currentLocation = location;
+			currentDay = savedDay;
+			journeyActive = false;
+
+			return true;
+		}
+	}
+
+	//==================================================
+	//  SAVED LOCATION WAS NOT FOUND
+	//==================================================
+	return false;
+}
+
+
+//==================================================
 // GET MENU SELECTION 
 // 
 // Validates menu input and returns whether the
@@ -604,4 +648,39 @@ bool Traveler::GetMenuSelection(const std::string& prompt,
 	}
 	//When input is valid
 	return true;
+}
+
+
+//==================================================
+//  GETS THE CURRENT JOURNEY DAY
+//  GETS THE CURRENT LOCATION
+//  GETS THE CURRENT INVENTORY
+// 
+// 	Allows other function to read journey info
+// 	without accessing private vars
+//==================================================
+int Traveler::GetCurrentDay() const { return currentDay; }
+std::string Traveler::GetCurrentLocation() const { return currentLocation.GetName(); }
+const Inventory& Traveler::GetInventory() const { return inventory; }
+
+//==================================================
+//  LOAD SAVED INVENTORY
+// 
+// Restores inventory from a saved game
+//==================================================
+void Traveler::LoadSavedInventory(const std::vector<std::string>&
+	savedNames, const std::vector<int>& savedQuantities) 
+{
+	inventory.LoadInventory(savedNames, savedQuantities);
+}
+
+//==================================================
+//   SAVE CALL BACK
+//
+// This stores the func the Traveler will call 
+// when the player chooses to save 
+//==================================================
+void Traveler::SetSaveCallback(std::function<void()>  callback) 
+{
+	saveCallBack = callback;
 }
