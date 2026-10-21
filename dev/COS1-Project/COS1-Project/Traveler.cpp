@@ -56,9 +56,10 @@ void Traveler::StartJourney()
 		std::cout << "4. Make A Location Selection\n"; //update
 		std::cout << "5. View Inventory\n"; 
 		std::cout << "6. Use an Inventory Item\n";
-        std::cout << "7. End Journey \n";
+		std::cout << "7. Save Journey\n";
+        std::cout << "8. End Journey \n";
 
-		if (!GetMenuSelection("\nEnter your selection: ", 1,7, selection))
+		if (!GetMenuSelection("\nEnter your selection: ", 1,8, selection))
 		{
 			if (!journeyActive)
 			{
@@ -79,7 +80,18 @@ void Traveler::StartJourney()
 		case 4:MakeLocationSelection();break;
         case 5:DisplayInventory();break;
         case 6:UseInventoryItem();break;
-		case 7:EndJourney();break;
+		case 7:
+			if (saveCallBack)
+			{
+				saveCallBack();
+			}
+			else
+			{
+				std::cout << "Save system is unavailable.\n";
+			}
+			break;
+
+		case 8:EndJourney();break;
 		default: std::cout << "Invalid selection. Please try again.\n"; break;
 		}
 

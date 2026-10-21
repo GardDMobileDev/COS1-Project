@@ -236,7 +236,7 @@ void Game::DisplayMainMenu()
 
     std::cout << "1. Start A New Journey\n";
     std::cout << "2. Load Journey\n";
-    std::cout << "3. Load Journey\n";
+    std::cout << "3. Instructions\n";
     std::cout << "4. Exit\n";
     std::cout << "\n";
 

@@ -23,7 +23,7 @@ bool SaveSystem::SaveGame(
 	}
 
 	//==================================================
-	// SAVE PLAYER INFORMATION
+	// SAVE PLAYER INFORMATION, PROGRESS, ITEMS/QTYS
 	//==================================================
 	file << player.GetName() << '\n';
 	file << player.GetHealth() << '\n';
@@ -31,16 +31,10 @@ bool SaveSystem::SaveGame(
 	file << player.GetWater() << '\n';
 	file << player.GetSupplies() << '\n';
 	file << player.GetMorale() << '\n';
-
-	//==================================================
-	// SAVE JOURNEY PROGRESS
-	//==================================================
 	file << traveler.GetCurrentDay() << '\n';
 	file << traveler.GetCurrentLocation() << '\n';
 
-	//==================================================
-	// SAVE INVENTORY ITEMS/QTYS
-	//==================================================
+	
 	const Inventory& inventory = traveler.GetInventory();
 
 	file << inventory.GetItemCount() << '\n';
@@ -104,7 +98,7 @@ bool SaveSystem::LoadGame(const std::string& fileName,
 
 	if (!(file >> savedDay))
 	{
-		std::cout << "Save file is invalis or incomplete.\n";
+		std::cout << "Save file is invalid or incomplete.\n";
 		return false;
 	}
 
@@ -112,7 +106,7 @@ bool SaveSystem::LoadGame(const std::string& fileName,
 
 	if (!std::getline(file, savedLocation))
 	{
-		std::cout << "Save file is invalis or incomplete.\n";
+		std::cout << "Save file is invalid or incomplete.\n";
 		return false;
 	}
 
