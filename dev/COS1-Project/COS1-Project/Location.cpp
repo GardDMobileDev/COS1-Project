@@ -15,20 +15,10 @@ Location::Location()
 
 }
 
-//==================================================
-//   LOCATION CONSTRUCTOR
-//
-//  Initializes a location with a specified name
-// and description
-//==================================================
+//  Initializes a location with a specified name and description
 Location::Location(const std::string& locationName, const std::string& locationDescription) : name(locationName),
 	description (locationDescription){}
 
-//==================================================
-//  GET LOCATION NAME/DESCRIPTIONS
-// 
-// Returns the locations name/description
-//==================================================
 std::string Location::GetName() const 
 {
 	return name;
@@ -39,12 +29,7 @@ std::string Location::GetDescription() const
 	return description;
 }
 
-//==================================================
-//  DISPLAY LOCATION
-// 
-// Displays the locations name and description
-// with visual dividers 
-//==================================================
+// Displays the locations name and description with visual dividers 
 void Location::DisplayLocation() const 
 {
 	std::cout << "\n";
